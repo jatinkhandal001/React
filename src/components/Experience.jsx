@@ -11,6 +11,7 @@ import {
   Sparkles,
   TrendingUp,
   Code2,
+  Building2,
 } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext.jsx";
 
@@ -24,18 +25,22 @@ const experiences = [
     location: "Jaipur, India",
     duration: "Aug 2026 - Present",
     type: "Current Role",
+
     shortDescription:
-      "Building full-stack and AI-driven applications with modern frontend, backend, database, and payment technologies.",
+      "Building full-stack and AI-driven applications using ReactJS, Python, FastAPI, MongoDB, REST APIs, and modern software technologies.",
+
     description:
-      "Working on full-stack and AI-driven applications using Python, ReactJS, FastAPI, and MongoDB, with a focus on scalable APIs, frontend-backend integration, and practical software solutions.",
+      "Working on full-stack and AI-driven applications using Python, ReactJS, FastAPI, and MongoDB. My work focuses on scalable REST APIs, frontend-backend integration, database workflows, payment integrations, and practical AI-powered software solutions.",
+
     achievements: [
-      "Developing responsive and reusable interfaces using ReactJS with component-based architecture",
+      "Developing responsive and reusable ReactJS interfaces using component-based architecture",
       "Building backend services and RESTful APIs using Python and FastAPI",
-      "Integrating MongoDB with FastAPI applications for data storage and CRUD workflows",
-      "Working with API integrations, authentication flows, and production-oriented backend workflows",
+      "Integrating MongoDB with FastAPI applications for database and CRUD workflows",
+      "Working with authentication, API integrations, and production-oriented backend workflows",
       "Integrating Razorpay APIs for payment workflows in web applications",
       "Applying Python, NumPy, OpenCV, and machine learning concepts to AI-powered features",
     ],
+
     technologies: [
       "Python",
       "FastAPI",
@@ -48,13 +53,25 @@ const experiences = [
       "Machine Learning",
       "Git & GitHub",
     ],
+
     metrics: [
-      { value: "Full Stack", label: "Development" },
-      { value: "AI/ML", label: "Integration" },
-      { value: "REST", label: "APIs" },
+      {
+        value: "Full Stack",
+        label: "Development",
+      },
+      {
+        value: "AI / ML",
+        label: "Integration",
+      },
+      {
+        value: "REST",
+        label: "APIs",
+      },
     ],
+
     link: null,
   },
+
   {
     id: 2,
     title: "Machine Learning / AI Intern",
@@ -62,17 +79,21 @@ const experiences = [
     location: "Jaipur, India",
     duration: "May 2025 - Aug 2025",
     type: "Internship",
+
     shortDescription:
-      "Developed machine learning pipelines and computer vision solutions using real-world datasets.",
+      "Developed machine learning pipelines and computer vision solutions using Python and real-world datasets.",
+
     description:
-      "Built and optimized machine learning models using Python and Scikit-learn on datasets with 10,000+ records. Developed end-to-end ML pipelines and computer vision solutions.",
+      "Built and optimized machine learning models using Python and Scikit-learn on datasets containing more than 10,000 records. Developed end-to-end machine learning pipelines and computer vision solutions for practical AI applications.",
+
     achievements: [
       "Built and optimized machine learning models using Python and Scikit-learn on datasets with 10,000+ records",
-      "Improved Random Forest classifier performance by increasing F1-score from 0.82 to 0.91 through hyperparameter tuning and feature selection",
-      "Designed end-to-end machine learning pipelines including preprocessing, feature engineering, training, and evaluation",
+      "Improved Random Forest classifier F1-score from 0.82 to 0.91 through hyperparameter tuning and feature selection",
+      "Designed end-to-end machine learning pipelines covering preprocessing, feature engineering, training, and evaluation",
       "Developed computer vision solutions using OpenCV for real-time face detection and recognition",
-      "Integrated ML and CV models into backend services using RESTful APIs",
+      "Integrated machine learning and computer vision models into backend services using RESTful APIs",
     ],
+
     technologies: [
       "Python",
       "Scikit-learn",
@@ -83,13 +104,25 @@ const experiences = [
       "Machine Learning",
       "Computer Vision",
     ],
+
     metrics: [
-      { value: "10K+", label: "Records" },
-      { value: "0.82 → 0.91", label: "F1 Score" },
-      { value: "ML + CV", label: "Solutions" },
+      {
+        value: "10K+",
+        label: "Records",
+      },
+      {
+        value: "0.82 → 0.91",
+        label: "F1 Score",
+      },
+      {
+        value: "ML + CV",
+        label: "Solutions",
+      },
     ],
+
     link: null,
   },
+
   {
     id: 3,
     title: "AI Azure Virtual Intern",
@@ -97,28 +130,43 @@ const experiences = [
     location: "Virtual",
     duration: "May 2025 - Jun 2025",
     type: "Internship",
+
     shortDescription:
-      "Worked with Azure AI and data analytics workloads including intelligent vision workflows.",
+      "Worked with Microsoft Azure AI and data analytics workloads, including intelligent computer vision workflows.",
+
     description:
-      "Completed a virtual internship focused on AI and data analytics workloads on Microsoft Azure cloud services, including intelligent vision workflows.",
+      "Completed a virtual internship focused on Artificial Intelligence and data analytics workloads using Microsoft Azure cloud services. Gained hands-on experience with intelligent vision workflows, cloud-based AI deployment, and scalable AI solutions.",
+
     achievements: [
-      "Deployed AI and data analytics workloads on Microsoft Azure cloud services",
+      "Worked with AI and data analytics workloads on Microsoft Azure cloud services",
       "Implemented intelligent vision workflows using Azure Cognitive Services",
       "Gained hands-on experience with cloud-based AI deployment and scaling",
-      "Learned practices for production-ready AI systems on Azure",
+      "Learned practices for developing production-oriented AI systems on Azure",
     ],
+
     technologies: [
       "Microsoft Azure",
       "Azure Cognitive Services",
-      "AI Workloads",
+      "Artificial Intelligence",
       "Data Analytics",
       "Cloud Deployment",
     ],
+
     metrics: [
-      { value: "Azure", label: "Cloud" },
-      { value: "AI", label: "Workloads" },
-      { value: "Vision", label: "Services" },
+      {
+        value: "Azure",
+        label: "Cloud",
+      },
+      {
+        value: "AI",
+        label: "Workloads",
+      },
+      {
+        value: "Vision",
+        label: "Services",
+      },
     ],
+
     link: "https://drive.google.com/file/d/1lUcFJkcWGixEh-j84WJitrm5m1fLmVcK/view?usp=drive_link",
   },
 ];
@@ -134,6 +182,9 @@ const Experience = () => {
     setActiveId((current) => (current === id ? null : id));
   };
 
+  /* =========================
+     GSAP ANIMATIONS
+  ========================= */
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const reduceMotion = window.matchMedia(
@@ -142,7 +193,6 @@ const Experience = () => {
 
       if (reduceMotion) return;
 
-      /* Header */
       gsap.fromTo(
         ".experience-header > *",
         {
@@ -163,7 +213,6 @@ const Experience = () => {
         }
       );
 
-      /* Timeline items */
       gsap.fromTo(
         ".timeline-item",
         {
@@ -184,15 +233,15 @@ const Experience = () => {
         }
       );
 
-      /* Timeline progress */
-      const progress = rootRef.current?.querySelector(
-        ".timeline-progress"
-      );
+      const progress =
+        rootRef.current?.querySelector(".timeline-progress");
 
       if (progress) {
         gsap.fromTo(
           progress,
-          { scaleY: 0 },
+          {
+            scaleY: 0,
+          },
           {
             scaleY: 1,
             transformOrigin: "top center",
@@ -207,7 +256,6 @@ const Experience = () => {
         );
       }
 
-      /* Stats */
       gsap.fromTo(
         ".experience-stat",
         {
@@ -236,36 +284,39 @@ const Experience = () => {
     <section
       ref={rootRef}
       id="experience"
+      aria-labelledby="experience-title"
       className={`relative overflow-hidden py-20 ${
         dark ? "bg-gray-900" : "bg-white"
       }`}
     >
-      {/* Background glow */}
+      {/* =========================
+          BACKGROUND
+      ========================= */}
       <div
-        className={`pointer-events-none absolute left-1/2 top-0
-        h-[300px] w-[550px] -translate-x-1/2 rounded-full blur-3xl opacity-[0.07]
-        ${dark ? "bg-cyan-400" : "bg-purple-500"}`}
+        className={`pointer-events-none absolute left-1/2 top-0 h-[300px] w-[550px] -translate-x-1/2 rounded-full blur-3xl opacity-[0.07] ${
+          dark ? "bg-cyan-400" : "bg-purple-500"
+        }`}
+        aria-hidden="true"
       />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-
-        {/* ================= HEADER ================= */}
-
-        <div className="experience-header mb-12 text-center md:mb-14">
-
+        {/* =========================
+            HEADER
+        ========================= */}
+        <header className="experience-header mb-12 text-center md:mb-14">
           <div
-            className={`mb-4 inline-flex items-center gap-2 rounded-full border
-            px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
+            className={`mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
               dark
                 ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-400"
                 : "border-purple-500/20 bg-purple-500/10 text-purple-600"
             }`}
           >
-            <Sparkles size={12} />
+            <Sparkles size={12} aria-hidden="true" />
             Career Journey
           </div>
 
           <h2
+            id="experience-title"
             className={`text-4xl font-bold sm:text-5xl md:text-6xl ${
               dark
                 ? "bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
@@ -277,17 +328,21 @@ const Experience = () => {
           </h2>
 
           <p
-            className={`mx-auto mt-4 max-w-2xl text-sm leading-relaxed sm:text-base ${
+            className={`mx-auto mt-4 max-w-2xl text-sm leading-7 sm:text-base ${
               dark ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            From cloud AI to machine learning and software engineering —
-            a journey of building real-world technology.
+            My professional journey across{" "}
+            <strong>AI, machine learning, data science, cloud computing,
+            computer vision, and software engineering</strong>
+            , building practical technology solutions through internships and
+            hands-on development.
           </p>
-        </div>
+        </header>
 
-        {/* ================= JOURNEY NAV ================= */}
-
+        {/* =========================
+            JOURNEY NAVIGATION
+        ========================= */}
         <div className="mb-10 flex justify-center">
           <div
             className={`inline-flex items-center rounded-xl border p-1 ${
@@ -295,6 +350,8 @@ const Experience = () => {
                 ? "border-gray-700 bg-gray-800"
                 : "border-gray-200 bg-gray-50"
             }`}
+            role="tablist"
+            aria-label="Experience timeline"
           >
             {experiences.map((exp, index) => {
               const active = activeId === exp.id;
@@ -302,9 +359,12 @@ const Experience = () => {
               return (
                 <button
                   key={exp.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  aria-controls={`experience-panel-${exp.id}`}
                   onClick={() => toggleExperience(exp.id)}
-                  className={`relative flex items-center gap-2 rounded-lg
-                  px-3 py-2 text-xs font-semibold transition-colors sm:px-4 ${
+                  className={`relative flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-colors sm:px-4 ${
                     active
                       ? dark
                         ? "bg-cyan-500/10 text-cyan-400"
@@ -331,30 +391,29 @@ const Experience = () => {
           </div>
         </div>
 
-        {/* ================= TIMELINE ================= */}
-
+        {/* =========================
+            TIMELINE
+        ========================= */}
         <div className="timeline-wrapper relative">
-
           {/* Timeline base */}
           <div
-            className={`absolute bottom-0 left-[15px] top-0 w-px
-            md:left-1/2 md:-translate-x-1/2 ${
+            className={`absolute bottom-0 left-[15px] top-0 w-px md:left-1/2 md:-translate-x-1/2 ${
               dark ? "bg-gray-700" : "bg-gray-200"
             }`}
+            aria-hidden="true"
           />
 
           {/* Timeline progress */}
           <div
-            className={`timeline-progress absolute bottom-0 left-[15px] top-0
-            w-[2px] origin-top md:left-1/2 md:-translate-x-1/2 ${
+            className={`timeline-progress absolute bottom-0 left-[15px] top-0 w-[2px] origin-top md:left-1/2 md:-translate-x-1/2 ${
               dark
                 ? "bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-500"
                 : "bg-gradient-to-b from-purple-500 via-blue-500 to-cyan-500"
             }`}
+            aria-hidden="true"
           />
 
-          <div className="space-y-7 md:space-y-10">
-
+          <div className="space-y-8 md:space-y-10">
             {experiences.map((exp, index) => {
               const isActive = activeId === exp.id;
               const isEven = index % 2 === 0;
@@ -365,15 +424,13 @@ const Experience = () => {
                   key={exp.id}
                   className="timeline-item relative"
                 >
-
-                  {/* Timeline Node */}
+                  {/* Timeline node */}
                   <button
+                    type="button"
                     onClick={() => toggleExperience(exp.id)}
-                    aria-label={`Toggle ${exp.title}`}
-                    className={`absolute left-[15px] top-6 z-20
-                    flex h-8 w-8 -translate-x-1/2 items-center justify-center
-                    rounded-full border-4 transition-transform duration-300
-                    md:left-1/2 ${
+                    aria-label={`Toggle details for ${exp.title} at ${exp.company}`}
+                    aria-expanded={isActive}
+                    className={`absolute left-[15px] top-6 z-20 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border-4 transition-transform duration-300 md:left-1/2 ${
                       dark
                         ? "border-cyan-400 bg-gray-900"
                         : "border-purple-500 bg-white"
@@ -389,10 +446,11 @@ const Experience = () => {
                           ? "bg-gray-600"
                           : "bg-gray-300"
                       }`}
+                      aria-hidden="true"
                     />
                   </button>
 
-                  {/* Card */}
+                  {/* Card positioning */}
                   <div
                     className={`pl-9 md:w-[47%] md:pl-0 ${
                       isEven
@@ -401,22 +459,22 @@ const Experience = () => {
                     }`}
                   >
                     <article
-                      className={`group relative overflow-hidden rounded-xl
-                      border transition-all duration-300 ${
+                      id={`experience-panel-${exp.id}`}
+                      className={`group relative overflow-hidden rounded-2xl border transition-all duration-300 ${
                         dark
-                          ? `border-gray-700 bg-gray-800 ${
+                          ? `border-gray-700 bg-gray-800/80 ${
                               isActive
-                                ? "border-cyan-500/50"
+                                ? "border-cyan-500/50 shadow-lg shadow-cyan-500/5"
                                 : "hover:border-gray-600"
                             }`
                           : `border-gray-200 bg-white ${
                               isActive
-                                ? "border-purple-400"
+                                ? "border-purple-400 shadow-lg shadow-purple-500/5"
                                 : "hover:border-gray-300"
                             }`
                       }`}
                     >
-                      {/* Active top line */}
+                      {/* Active accent */}
                       {isActive && (
                         <div
                           className={`absolute left-0 right-0 top-0 h-[2px] ${
@@ -424,27 +482,27 @@ const Experience = () => {
                               ? "bg-gradient-to-r from-cyan-400 to-purple-500"
                               : "bg-gradient-to-r from-purple-500 to-blue-500"
                           }`}
+                          aria-hidden="true"
                         />
                       )}
 
-                      <div className="p-4 sm:p-5">
-
-                        {/* Card header */}
+                      <div className="p-5 sm:p-6">
+                        {/* =========================
+                            CARD HEADER
+                        ========================= */}
                         <div className="flex items-start gap-3">
-
                           <div
-                            className={`flex h-10 w-10 shrink-0 items-center
-                            justify-center rounded-lg ${
+                            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
                               dark
                                 ? "bg-cyan-500/10 text-cyan-400"
                                 : "bg-purple-500/10 text-purple-600"
                             }`}
+                            aria-hidden="true"
                           >
-                            <Briefcase size={18} />
+                            <Briefcase size={19} />
                           </div>
 
                           <div className="min-w-0 flex-1">
-
                             <div className="flex flex-wrap items-center gap-2">
                               <h3
                                 className={`text-base font-bold sm:text-lg ${
@@ -458,8 +516,7 @@ const Experience = () => {
 
                               {isCurrent && (
                                 <span
-                                  className={`rounded-full px-2 py-0.5
-                                  text-[8px] font-bold uppercase tracking-wider ${
+                                  className={`rounded-full px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider ${
                                     dark
                                       ? "bg-cyan-500/10 text-cyan-400"
                                       : "bg-green-50 text-green-600"
@@ -471,7 +528,7 @@ const Experience = () => {
                             </div>
 
                             <p
-                              className={`mt-0.5 text-xs font-semibold sm:text-sm ${
+                              className={`mt-1 text-xs font-semibold sm:text-sm ${
                                 dark
                                   ? "text-cyan-400"
                                   : "text-purple-600"
@@ -481,11 +538,19 @@ const Experience = () => {
                             </p>
                           </div>
 
-                          {/* Expand */}
+                          {/* Expand button */}
                           <button
-                            onClick={() => toggleExperience(exp.id)}
-                            aria-label="Expand experience"
-                            className={`shrink-0 rounded-lg p-1.5 ${
+                            type="button"
+                            onClick={() =>
+                              toggleExperience(exp.id)
+                            }
+                            aria-label={
+                              isActive
+                                ? `Collapse ${exp.title}`
+                                : `Expand ${exp.title}`
+                            }
+                            aria-expanded={isActive}
+                            className={`shrink-0 rounded-lg p-2 transition-colors ${
                               dark
                                 ? "text-gray-500 hover:bg-gray-700 hover:text-white"
                                 : "text-gray-400 hover:bg-gray-100 hover:text-gray-700"
@@ -496,31 +561,41 @@ const Experience = () => {
                               className={`transition-transform duration-300 ${
                                 isActive ? "rotate-180" : ""
                               }`}
+                              aria-hidden="true"
                             />
                           </button>
                         </div>
 
-                        {/* Meta */}
+                        {/* =========================
+                            META
+                        ========================= */}
                         <div
-                          className={`mt-3 flex flex-wrap gap-x-4 gap-y-1
-                          text-[10px] sm:text-xs ${
+                          className={`mt-4 flex flex-wrap gap-x-4 gap-y-2 text-[10px] sm:text-xs ${
                             dark ? "text-gray-500" : "text-gray-500"
                           }`}
                         >
                           <span className="flex items-center gap-1.5">
-                            <Calendar size={12} />
+                            <Calendar
+                              size={12}
+                              aria-hidden="true"
+                            />
                             {exp.duration}
                           </span>
 
                           <span className="flex items-center gap-1.5">
-                            <MapPin size={12} />
+                            <MapPin
+                              size={12}
+                              aria-hidden="true"
+                            />
                             {exp.location}
                           </span>
                         </div>
 
-                        {/* Short description */}
+                        {/* =========================
+                            DESCRIPTION
+                        ========================= */}
                         <p
-                          className={`mt-4 text-xs leading-5 sm:text-sm ${
+                          className={`mt-4 text-xs leading-6 sm:text-sm ${
                             dark
                               ? "text-gray-400"
                               : "text-gray-600"
@@ -531,15 +606,17 @@ const Experience = () => {
                             : exp.shortDescription}
                         </p>
 
-                        {/* Metrics */}
-                        <div className="mt-4 grid grid-cols-3 gap-2">
+                        {/* =========================
+                            METRICS
+                        ========================= */}
+                        <div className="mt-5 grid grid-cols-3 gap-2">
                           {exp.metrics.map((metric) => (
                             <div
                               key={metric.label}
-                              className={`rounded-lg px-2 py-2 text-center ${
+                              className={`rounded-xl border px-2 py-2.5 text-center ${
                                 dark
-                                  ? "bg-gray-900"
-                                  : "bg-gray-50"
+                                  ? "border-gray-700 bg-gray-900/70"
+                                  : "border-gray-100 bg-gray-50"
                               }`}
                             >
                               <div
@@ -553,7 +630,7 @@ const Experience = () => {
                               </div>
 
                               <div
-                                className={`mt-0.5 text-[8px] sm:text-[9px] ${
+                                className={`mt-1 text-[8px] sm:text-[9px] ${
                                   dark
                                     ? "text-gray-600"
                                     : "text-gray-500"
@@ -565,7 +642,9 @@ const Experience = () => {
                           ))}
                         </div>
 
-                        {/* Expandable content */}
+                        {/* =========================
+                            EXPANDED CONTENT
+                        ========================= */}
                         <div
                           className={`grid transition-all duration-300 ${
                             isActive
@@ -574,23 +653,21 @@ const Experience = () => {
                           }`}
                         >
                           <div className="overflow-hidden">
-
                             {/* Achievements */}
-                            <div className="mt-5">
-
-                              <div className="mb-2 flex items-center gap-2">
+                            <div className="mt-6">
+                              <div className="mb-3 flex items-center gap-2">
                                 <TrendingUp
-                                  size={13}
+                                  size={14}
                                   className={
                                     dark
                                       ? "text-cyan-400"
                                       : "text-purple-600"
                                   }
+                                  aria-hidden="true"
                                 />
 
                                 <h4
-                                  className={`text-[10px] font-bold uppercase
-                                  tracking-wider ${
+                                  className={`text-[10px] font-bold uppercase tracking-wider ${
                                     dark
                                       ? "text-gray-300"
                                       : "text-gray-700"
@@ -600,25 +677,25 @@ const Experience = () => {
                                 </h4>
                               </div>
 
-                              <ul className="space-y-2">
+                              <ul className="space-y-2.5">
                                 {exp.achievements.map(
                                   (achievement, i) => (
                                     <li
                                       key={i}
-                                      className={`flex items-start gap-2
-                                      text-[11px] leading-5 sm:text-xs ${
+                                      className={`flex items-start gap-2 text-[11px] leading-5 sm:text-xs ${
                                         dark
                                           ? "text-gray-400"
                                           : "text-gray-600"
                                       }`}
                                     >
                                       <CheckCircle2
-                                        size={12}
+                                        size={13}
                                         className={`mt-1 shrink-0 ${
                                           dark
                                             ? "text-cyan-400"
                                             : "text-purple-500"
                                         }`}
+                                        aria-hidden="true"
                                       />
 
                                       <span>{achievement}</span>
@@ -629,27 +706,26 @@ const Experience = () => {
                             </div>
 
                             {/* Technologies */}
-                            <div className="mt-5">
-
-                              <div className="mb-2 flex items-center gap-2">
+                            <div className="mt-6">
+                              <div className="mb-3 flex items-center gap-2">
                                 <Code2
-                                  size={13}
+                                  size={14}
                                   className={
                                     dark
                                       ? "text-purple-400"
                                       : "text-blue-600"
                                   }
+                                  aria-hidden="true"
                                 />
 
                                 <h4
-                                  className={`text-[10px] font-bold uppercase
-                                  tracking-wider ${
+                                  className={`text-[10px] font-bold uppercase tracking-wider ${
                                     dark
                                       ? "text-gray-300"
                                       : "text-gray-700"
                                   }`}
                                 >
-                                  Tech Stack
+                                  Technologies & Skills
                                 </h4>
                               </div>
 
@@ -657,7 +733,7 @@ const Experience = () => {
                                 {exp.technologies.map((tech) => (
                                   <span
                                     key={tech}
-                                    className={`rounded-md px-2 py-1 text-[9px] ${
+                                    className={`rounded-md px-2.5 py-1.5 text-[9px] font-medium ${
                                       dark
                                         ? "bg-gray-700 text-gray-400"
                                         : "bg-gray-100 text-gray-600"
@@ -669,31 +745,38 @@ const Experience = () => {
                               </div>
                             </div>
 
-                            {/* Link */}
+                            {/* Certificate */}
                             {exp.link && (
                               <a
                                 href={exp.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`mt-5 inline-flex items-center gap-1.5
-                                text-xs font-semibold ${
+                                className={`mt-6 inline-flex items-center gap-2 text-xs font-semibold transition-transform hover:translate-x-1 ${
                                   dark
                                     ? "text-cyan-400"
                                     : "text-purple-600"
                                 }`}
                               >
-                                View Certificate
-                                <ExternalLink size={12} />
+                                View Internship Certificate
+                                <ExternalLink
+                                  size={12}
+                                  aria-hidden="true"
+                                />
                               </a>
                             )}
                           </div>
                         </div>
 
-                        {/* Explore */}
+                        {/* =========================
+                            EXPLORE BUTTON
+                        ========================= */}
                         <button
-                          onClick={() => toggleExperience(exp.id)}
-                          className={`mt-4 flex w-full items-center justify-center
-                          gap-1 border-t pt-3 text-[10px] font-semibold ${
+                          type="button"
+                          onClick={() =>
+                            toggleExperience(exp.id)
+                          }
+                          aria-expanded={isActive}
+                          className={`mt-5 flex w-full items-center justify-center gap-1 border-t pt-4 text-[10px] font-semibold transition-colors ${
                             dark
                               ? "border-gray-700 text-gray-500 hover:text-cyan-400"
                               : "border-gray-100 text-gray-500 hover:text-purple-600"
@@ -708,20 +791,23 @@ const Experience = () => {
                             className={`transition-transform ${
                               isActive ? "rotate-180" : ""
                             }`}
+                            aria-hidden="true"
                           />
                         </button>
                       </div>
 
                       {/* Bottom accent */}
                       <div
-                        className={`absolute bottom-0 left-0 h-[2px]
-                        transition-all duration-300 ${
-                          isActive ? "w-full" : "w-0 group-hover:w-full"
+                        className={`absolute bottom-0 left-0 h-[2px] transition-all duration-300 ${
+                          isActive
+                            ? "w-full"
+                            : "w-0 group-hover:w-full"
                         } ${
                           dark
                             ? "bg-gradient-to-r from-cyan-400 to-purple-500"
                             : "bg-gradient-to-r from-purple-500 to-blue-500"
                         }`}
+                        aria-hidden="true"
                       />
                     </article>
                   </div>
@@ -731,10 +817,10 @@ const Experience = () => {
           </div>
         </div>
 
-        {/* ================= STATS ================= */}
-
+        {/* =========================
+            EXPERIENCE STATS
+        ========================= */}
         <div className="experience-stats mt-12 grid grid-cols-2 gap-3 md:mt-14 md:grid-cols-4 md:gap-4">
-
           {[
             ["01+", "Years Experience"],
             ["03", "Internships"],
@@ -743,8 +829,7 @@ const Experience = () => {
           ].map(([value, label]) => (
             <div
               key={label}
-              className={`experience-stat rounded-xl border px-3 py-4
-              text-center sm:px-5 sm:py-5 ${
+              className={`experience-stat rounded-xl border px-3 py-4 text-center sm:px-5 sm:py-5 ${
                 dark
                   ? "border-gray-700 bg-gray-800"
                   : "border-gray-200 bg-gray-50"
@@ -768,7 +853,6 @@ const Experience = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
