@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from "react";
 import {
   ExternalLink,
   Github,
@@ -6,11 +6,12 @@ import {
   ArrowUpRight,
   Sparkles,
   Star,
-  Zap,
-} from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTheme } from '../contexts/ThemeContext.jsx';
+  GitFork,
+  Code2,
+} from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTheme } from "../contexts/ThemeContext.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,114 +20,134 @@ const Projects = () => {
   const sectionRef = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const dark = theme === 'dark';
+  const dark = theme === "dark";
 
   const projects = [
     {
       id: 1,
-      title: 'Startup Hub',
-      shortTitle: 'Startup Hub',
+      title: "Startup Hub",
       description:
-        'AI-powered startup intelligence platform for analyzing startup data and generating business insights.',
+        "AI-powered startup intelligence platform that analyzes startup data and generates insights for validation, growth, and business research.",
       image:
-        'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=900',
+        "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=900",
+      imageAlt:
+        "Startup team collaborating on an AI-powered data analytics platform",
       technologies: [
-        'Python',
-        'Pandas',
-        'NumPy',
-        'Scikit-learn',
-        'Flask',
-        'REST APIs',
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn",
+        "Flask",
+        "REST APIs",
       ],
       github:
-        'https://github.com/jatinkhandal001/Startup_hub/tree/6c1292865357c2b872cdbd5836f25af0a5300be0/Startup_hub',
-      live: 'https://startup-hub.onrender.com/',
-      category: 'AI / ML',
-      stats: { stars: 234, forks: 45, commits: 892 },
+        "https://github.com/jatinkhandal001/Startup_hub/tree/6c1292865357c2b872cdbd5836f25af0a5300be0/Startup_hub",
+      live: "https://startup-hub.onrender.com/",
+      category: "AI / ML",
+      stats: {
+        stars: 234,
+        forks: 45,
+        commits: 892,
+      },
       fullDescription:
-        'Applied data preprocessing, exploratory data analysis (EDA), and machine learning algorithms to analyze startup datasets. Built predictive models to generate insights for startup validation and growth analysis. Designed and deployed RESTful APIs for scalable analytics access.',
+        "Startup Hub is an AI-powered startup intelligence platform built with Python and machine learning technologies. The project applies data preprocessing, exploratory data analysis, feature engineering, and machine learning techniques to startup datasets. It provides data-driven insights for startup validation and growth analysis through RESTful APIs.",
       features: [
-        'Data preprocessing and exploratory data analysis (EDA)',
-        'Machine learning algorithms for startup dataset analysis',
-        'Predictive models for startup validation and growth analysis',
-        'RESTful APIs for scalable analytics access',
-        'Insights generation for startup intelligence',
-        'End-to-end ML pipeline implementation',
+        "Data preprocessing and exploratory data analysis",
+        "Machine learning algorithms for startup analysis",
+        "Predictive models for startup validation",
+        "Business insights from startup datasets",
+        "RESTful APIs for analytics access",
+        "End-to-end machine learning workflow",
       ],
     },
+
     {
       id: 2,
-      title: 'LearnFlow',
-      shortTitle: 'LearnFlow',
+      title: "LearnFlow",
       description:
-        'Adaptive AI learning platform combining data-driven assessment with computer vision modules.',
+        "AI-powered learning platform combining adaptive assessment, learner analytics, recommendation systems, and computer vision.",
       image:
-        'https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=900',
+        "https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=900",
+      imageAlt:
+        "Student using an AI-powered learning and education platform",
       technologies: [
-        'Python',
-        'OpenCV',
-        'CvZone',
-        'Scikit-learn',
-        'Streamlit',
-        'REST APIs',
+        "Python",
+        "OpenCV",
+        "CVZone",
+        "Scikit-learn",
+        "Streamlit",
+        "REST APIs",
       ],
-      github: 'https://github.com/jatinkhandal001',
+      github: "https://github.com/jatinkhandal001",
       live: null,
-      category: 'AI / Education',
-      stats: { stars: 156, forks: 23, commits: 567 },
+      category: "AI / Education",
+      stats: {
+        stars: 156,
+        forks: 23,
+        commits: 567,
+      },
       fullDescription:
-        'Developing an adaptive AI-based learning system using data-driven assessment and recommendation models. Implemented analytics dashboards to monitor learner performance and engagement. Built computer vision modules for face detection and recognition.',
+        "LearnFlow is an AI-based learning platform focused on adaptive education and data-driven learner assessment. It combines recommendation models, analytics dashboards, and computer vision modules to create a more interactive learning experience. The platform uses Python, Scikit-learn, OpenCV, CVZone, Streamlit, and REST APIs.",
       features: [
-        'Adaptive AI-based learning system with data-driven models',
-        'Analytics dashboards for learner performance monitoring',
-        'Computer vision modules for face detection and recognition',
-        'Data-driven assessment and recommendation engine',
-        'Real-time engagement tracking and analysis',
-        'Streamlit-based user interface for easy interaction',
+        "Adaptive AI-based learning system",
+        "Data-driven learner assessment",
+        "Performance and engagement analytics",
+        "Recommendation-based learning workflow",
+        "Computer vision for face detection",
+        "Interactive Streamlit interface",
       ],
     },
+
     {
       id: 3,
-      title: 'Virtual Mouse',
-      shortTitle: 'Virtual Mouse',
+      title: "Virtual Mouse",
       description:
-        'AI-based virtual mouse using real-time hand gesture recognition for touchless computer interaction.',
+        "Computer vision-based virtual mouse that uses real-time hand gesture recognition for touchless cursor control and human-computer interaction.",
       image:
-        'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=900',
+        "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=900",
+      imageAlt:
+        "Computer vision based virtual mouse using hand gesture interaction",
       technologies: [
-        'Python',
-        'OpenCV',
-        'CVZone',
-        'Computer Vision',
+        "Python",
+        "OpenCV",
+        "CVZone",
+        "Computer Vision",
       ],
       github:
-        'https://github.com/jatinkhandal001/Virtual-mouse/blob/f9a305831430e6b48ce24e741b005d12fc506ee5/virtual_mouse.py',
+        "https://github.com/jatinkhandal001/Virtual-mouse/blob/f9a305831430e6b48ce24e741b005d12fc506ee5/virtual_mouse.py",
       live: null,
-      category: 'Computer Vision',
-      stats: { stars: 189, forks: 67, commits: 1205 },
+      category: "Computer Vision",
+      stats: {
+        stars: 189,
+        forks: 67,
+        commits: 1205,
+      },
       fullDescription:
-        'AI-based Virtual Mouse using real-time hand gesture recognition powered by OpenCV and CVZone. Enables contactless cursor movement, click, and drag using hand gestures — enhancing accessibility and human-computer interaction.',
+        "Virtual Mouse is a Python and computer vision project that enables touchless computer interaction through real-time hand gesture recognition. Using OpenCV and CVZone, the application interprets hand movements to control cursor movement, clicking, and dragging, demonstrating practical human-computer interaction and accessibility applications.",
       features: [
-        'Real-time hand gesture recognition using OpenCV',
-        'Contactless cursor movement and control',
-        'Click and drag functionality with hand gestures',
-        'Computer vision-based human-computer interaction',
-        'Accessibility enhancement for touchless control',
-        'Real-time video processing and gesture interpretation',
+        "Real-time hand gesture recognition",
+        "Touchless cursor movement",
+        "Gesture-based clicking and dragging",
+        "Real-time video processing",
+        "Computer vision-based interaction",
+        "Accessibility-focused touchless control",
       ],
     },
   ];
 
+  /* =========================
+     GSAP SCROLL ANIMATION
+  ========================= */
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const reduceMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)'
+        "(prefers-reduced-motion: reduce)"
       ).matches;
 
       if (reduceMotion) return;
 
       gsap.fromTo(
-        '.projects-heading > *',
+        ".projects-heading > *",
         {
           opacity: 0,
           y: 25,
@@ -136,17 +157,17 @@ const Projects = () => {
           y: 0,
           duration: 0.6,
           stagger: 0.1,
-          ease: 'power2.out',
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: '.projects-heading',
-            start: 'top 85%',
+            trigger: ".projects-heading",
+            start: "top 85%",
             once: true,
           },
         }
       );
 
       gsap.fromTo(
-        '.project-card',
+        ".project-card",
         {
           opacity: 0,
           y: 35,
@@ -156,10 +177,10 @@ const Projects = () => {
           y: 0,
           duration: 0.55,
           stagger: 0.1,
-          ease: 'power2.out',
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: '.project-grid',
-            start: 'top 82%',
+            trigger: ".project-grid",
+            start: "top 82%",
             once: true,
           },
         }
@@ -169,115 +190,137 @@ const Projects = () => {
     return () => ctx.revert();
   }, []);
 
+  /* =========================
+     MODAL CONTROL
+  ========================= */
   const openProject = (project) => {
     setSelectedProject(project);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeProject = () => {
     setSelectedProject(null);
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
+  };
+
+  const handleCardKeyDown = (event, project) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProject(project);
+    }
   };
 
   return (
     <section
-      ref={sectionRef}
       id="projects"
-      className={`relative py-20 overflow-hidden ${
-        dark ? 'bg-gray-900' : 'bg-white'
+      ref={sectionRef}
+      aria-labelledby="projects-title"
+      className={`relative overflow-hidden py-20 ${
+        dark ? "bg-gray-900" : "bg-white"
       }`}
     >
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* =========================
+          BACKGROUND
+      ========================= */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      >
         <div
-          className={`absolute top-10 left-1/2 -translate-x-1/2
-          w-[420px] h-[180px] rounded-full blur-3xl opacity-[0.08]
-          ${dark ? 'bg-cyan-400' : 'bg-purple-500'}`}
+          className={`absolute left-1/2 top-10 h-[180px] w-[420px] -translate-x-1/2 rounded-full blur-3xl opacity-[0.08] ${
+            dark ? "bg-cyan-400" : "bg-purple-500"
+          }`}
         />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* ================= HEADER ================= */}
-        <div className="projects-heading text-center mb-12">
-
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* =========================
+            HEADER
+        ========================= */}
+        <header className="projects-heading mb-12 text-center">
           <div
-            className={`inline-flex items-center gap-2 px-3 py-1.5
-            rounded-full mb-4 text-xs font-semibold uppercase tracking-wider
-            ${
+            className={`mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wider ${
               dark
-                ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
-                : 'bg-purple-500/10 text-purple-600 border border-purple-500/20'
+                ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-400"
+                : "border-purple-500/20 bg-purple-500/10 text-purple-600"
             }`}
           >
-            <Sparkles size={13} />
+            <Sparkles size={13} aria-hidden="true" />
             Selected Work
           </div>
 
           <h2
-            className={`text-4xl md:text-5xl font-bold ${
+            id="projects-title"
+            className={`text-4xl font-bold md:text-5xl ${
               dark
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400'
-                : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600'
+                ? "bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                : "bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
             }`}
-            style={{ fontFamily: 'Orbitron, monospace' }}
+            style={{ fontFamily: "Orbitron, monospace" }}
           >
             PROJECTS
           </h2>
 
           <p
-            className={`mt-3 max-w-2xl mx-auto text-sm md:text-base ${
-              dark ? 'text-gray-400' : 'text-gray-600'
+            className={`mx-auto mt-4 max-w-2xl text-sm leading-7 md:text-base ${
+              dark ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            A selection of AI, machine learning, computer vision,
-            and full-stack projects.
+            A selection of AI, machine learning, data science, computer vision,
+            and full-stack projects built to solve practical problems.
           </p>
-        </div>
+        </header>
 
-        {/* ================= PROJECT GRID ================= */}
-        <div className="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-
+        {/* =========================
+            PROJECT GRID
+        ========================= */}
+        <div className="project-grid grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <article
               key={project.id}
-              className={`project-card group relative overflow-hidden rounded-xl border cursor-pointer ${
+              className={`project-card group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-2 ${
                 dark
-                  ? 'bg-gray-800 border-gray-700 hover:border-cyan-500/50'
-                  : 'bg-white border-gray-200 hover:border-purple-400'
+                  ? "border-gray-700 bg-gray-800/80 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/5"
+                  : "border-gray-200 bg-white hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/5"
               }`}
               onClick={() => openProject(project)}
+              onKeyDown={(event) => handleCardKeyDown(event, project)}
+              role="button"
+              tabIndex={0}
+              aria-label={`View details for ${project.title}`}
             >
-              {/* Image */}
-              <div className="relative h-40 overflow-hidden">
-
+              {/* =========================
+                  PROJECT IMAGE
+              ========================= */}
+              <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={project.imageAlt}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
-                {/* Image overlay */}
                 <div
                   className={`absolute inset-0 ${
                     dark
-                      ? 'bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent'
-                      : 'bg-gradient-to-t from-black/50 via-transparent to-transparent'
+                      ? "bg-gradient-to-t from-gray-900 via-gray-900/30 to-transparent"
+                      : "bg-gradient-to-t from-black/60 via-black/10 to-transparent"
                   }`}
+                  aria-hidden="true"
                 />
 
-                {/* Number */}
-                <span className="absolute top-3 left-3 text-[10px] font-mono text-white/70">
+                {/* Project number */}
+                <span className="absolute left-4 top-4 font-mono text-[10px] font-medium text-white/70">
                   0{index + 1}
                 </span>
 
                 {/* Category */}
                 <span
-                  className={`absolute top-3 right-3 px-2 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider ${
+                  className={`absolute right-4 top-4 rounded-lg px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider ${
                     dark
-                      ? 'bg-gray-900/80 text-cyan-400'
-                      : 'bg-white/90 text-purple-600'
+                      ? "bg-gray-900/90 text-cyan-400"
+                      : "bg-white/95 text-purple-600"
                   }`}
                 >
                   {project.category}
@@ -285,35 +328,34 @@ const Projects = () => {
 
                 {/* Open icon */}
                 <div
-                  className={`absolute bottom-3 right-3 w-8 h-8 rounded-lg flex items-center justify-center
-                  opacity-0 translate-y-2 group-hover:opacity-100
-                  group-hover:translate-y-0 transition-all duration-300
-                  ${
+                  className={`absolute bottom-4 right-4 flex h-9 w-9 translate-y-2 items-center justify-center rounded-lg opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 ${
                     dark
-                      ? 'bg-cyan-500 text-gray-900'
-                      : 'bg-purple-600 text-white'
+                      ? "bg-cyan-500 text-gray-900"
+                      : "bg-purple-600 text-white"
                   }`}
+                  aria-hidden="true"
                 >
-                  <ArrowUpRight size={16} />
+                  <ArrowUpRight size={17} />
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-4">
-
-                <div className="flex items-start justify-between gap-3">
+              {/* =========================
+                  PROJECT CONTENT
+              ========================= */}
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex items-start justify-between gap-4">
                   <div>
                     <h3
-                      className={`text-lg font-bold mb-1 ${
-                        dark ? 'text-white' : 'text-gray-900'
+                      className={`text-xl font-bold ${
+                        dark ? "text-white" : "text-gray-900"
                       }`}
                     >
                       {project.title}
                     </h3>
 
                     <p
-                      className={`text-xs leading-relaxed line-clamp-2 ${
-                        dark ? 'text-gray-400' : 'text-gray-600'
+                      className={`mt-2 text-sm leading-6 ${
+                        dark ? "text-gray-400" : "text-gray-600"
                       }`}
                     >
                       {project.description}
@@ -321,25 +363,26 @@ const Projects = () => {
                   </div>
 
                   <div
-                    className={`shrink-0 w-9 h-9 rounded-lg flex items-center justify-center ${
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
                       dark
-                        ? 'bg-cyan-500/10 text-cyan-400'
-                        : 'bg-purple-500/10 text-purple-600'
+                        ? "bg-cyan-500/10 text-cyan-400"
+                        : "bg-purple-500/10 text-purple-600"
                     }`}
+                    aria-hidden="true"
                   >
-                    <Zap size={17} />
+                    <Code2 size={17} />
                   </div>
                 </div>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1.5 mt-4">
+                <div className="mt-5 flex flex-wrap gap-1.5">
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className={`px-2 py-1 rounded-md text-[10px] ${
+                      className={`rounded-md px-2 py-1 text-[10px] font-medium ${
                         dark
-                          ? 'bg-gray-700 text-gray-300'
-                          : 'bg-gray-100 text-gray-600'
+                          ? "bg-gray-700/80 text-gray-300"
+                          : "bg-gray-100 text-gray-600"
                       }`}
                     >
                       {tech}
@@ -348,10 +391,10 @@ const Projects = () => {
 
                   {project.technologies.length > 4 && (
                     <span
-                      className={`px-2 py-1 rounded-md text-[10px] ${
+                      className={`rounded-md px-2 py-1 text-[10px] font-medium ${
                         dark
-                          ? 'bg-gray-700 text-gray-500'
-                          : 'bg-gray-100 text-gray-500'
+                          ? "bg-gray-700/80 text-gray-500"
+                          : "bg-gray-100 text-gray-500"
                       }`}
                     >
                       +{project.technologies.length - 4}
@@ -361,94 +404,114 @@ const Projects = () => {
 
                 {/* Footer */}
                 <div
-                  className={`flex items-center justify-between mt-4 pt-3 border-t ${
-                    dark
-                      ? 'border-gray-700'
-                      : 'border-gray-100'
+                  className={`mt-auto flex items-center justify-between border-t pt-4 ${
+                    dark ? "border-gray-700" : "border-gray-100"
                   }`}
                 >
-                  <div
-                    className={`flex items-center gap-1 text-[10px] ${
-                      dark ? 'text-gray-500' : 'text-gray-400'
-                    }`}
-                  >
-                    <Star size={11} />
-                    {project.stats.stars}
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={`flex items-center gap-1.5 text-[10px] ${
+                        dark ? "text-gray-500" : "text-gray-400"
+                      }`}
+                    >
+                      <Star size={11} />
+                      {project.stats.stars}
+                    </span>
+
+                    <span
+                      className={`flex items-center gap-1.5 text-[10px] ${
+                        dark ? "text-gray-500" : "text-gray-400"
+                      }`}
+                    >
+                      <GitFork size={11} />
+                      {project.stats.forks}
+                    </span>
                   </div>
 
                   <span
                     className={`text-[10px] font-semibold ${
-                      dark ? 'text-cyan-400' : 'text-purple-600'
+                      dark ? "text-cyan-400" : "text-purple-600"
                     }`}
                   >
-                    View Details →
+                    View Details
+                    <ArrowUpRight
+                      size={12}
+                      className="ml-1 inline"
+                      aria-hidden="true"
+                    />
                   </span>
                 </div>
               </div>
 
               {/* Bottom accent */}
               <div
-                className={`absolute bottom-0 left-0 right-0 h-[2px]
-                scale-x-0 group-hover:scale-x-100 origin-left
-                transition-transform duration-300 ${
+                className={`absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
                   dark
-                    ? 'bg-gradient-to-r from-cyan-400 to-purple-500'
-                    : 'bg-gradient-to-r from-purple-500 to-blue-500'
+                    ? "bg-gradient-to-r from-cyan-400 to-purple-500"
+                    : "bg-gradient-to-r from-purple-500 to-blue-500"
                 }`}
+                aria-hidden="true"
               />
             </article>
           ))}
         </div>
       </div>
 
-      {/* ================= MODAL ================= */}
+      {/* =========================
+          PROJECT MODAL
+      ========================= */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
           onClick={closeProject}
           role="dialog"
           aria-modal="true"
-          aria-label={`${selectedProject.title} details`}
+          aria-labelledby="project-modal-title"
         >
           <div
-            className={`relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border ${
+            className={`relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border ${
               dark
-                ? 'bg-gray-900 border-gray-700'
-                : 'bg-white border-gray-200'
+                ? "border-gray-700 bg-gray-900"
+                : "border-gray-200 bg-white"
             }`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
           >
             {/* Close */}
             <button
+              type="button"
               onClick={closeProject}
               aria-label="Close project details"
-              className={`absolute top-4 right-4 z-10 w-9 h-9 rounded-lg flex items-center justify-center ${
+              className={`absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${
                 dark
-                  ? 'bg-gray-800 text-gray-300 hover:bg-red-500 hover:text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-red-500 hover:text-white'
+                  ? "bg-gray-800 text-gray-300 hover:bg-red-500 hover:text-white"
+                  : "bg-gray-100 text-gray-600 hover:bg-red-500 hover:text-white"
               }`}
             >
               <X size={18} />
             </button>
 
             {/* Modal image */}
-            <div className="relative h-52 sm:h-64 overflow-hidden">
+            <div className="relative h-52 overflow-hidden sm:h-64">
               <img
                 src={selectedProject.image}
-                alt={selectedProject.title}
-                className="w-full h-full object-cover"
+                alt={selectedProject.imageAlt}
+                className="h-full w-full object-cover"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"
+                aria-hidden="true"
+              />
 
-              <div className="absolute bottom-4 left-5">
-                <span className="text-xs text-cyan-400 font-semibold uppercase tracking-wider">
+              <div className="absolute bottom-5 left-5 right-5">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   {selectedProject.category}
                 </span>
 
                 <h3
-                  className="text-2xl sm:text-3xl font-bold text-white mt-1"
-                  style={{ fontFamily: 'Orbitron, monospace' }}
+                  id="project-modal-title"
+                  className="mt-1 text-2xl font-bold text-white sm:text-3xl"
+                  style={{ fontFamily: "Orbitron, monospace" }}
                 >
                   {selectedProject.title}
                 </h3>
@@ -457,59 +520,91 @@ const Projects = () => {
 
             {/* Modal content */}
             <div className="p-5 sm:p-7">
-
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-2 mb-6">
-                <div className="p-3 rounded-lg bg-gray-800">
+              <div className="mb-7 grid grid-cols-3 gap-3">
+                <div
+                  className={`rounded-xl border p-3 ${
+                    dark
+                      ? "border-gray-700 bg-gray-800"
+                      : "border-gray-200 bg-gray-50"
+                  }`}
+                >
                   <div className="flex items-center gap-2 text-yellow-400">
                     <Star size={14} />
                     <span className="text-sm font-bold">
                       {selectedProject.stats.stars}
                     </span>
                   </div>
-                  <span className="text-[10px] text-gray-500">
+
+                  <span
+                    className={`mt-1 block text-[10px] ${
+                      dark ? "text-gray-500" : "text-gray-400"
+                    }`}
+                  >
                     Stars
                   </span>
                 </div>
 
-                <div className="p-3 rounded-lg bg-gray-800">
+                <div
+                  className={`rounded-xl border p-3 ${
+                    dark
+                      ? "border-gray-700 bg-gray-800"
+                      : "border-gray-200 bg-gray-50"
+                  }`}
+                >
                   <div className="flex items-center gap-2 text-cyan-400">
-                    <Github size={14} />
+                    <GitFork size={14} />
                     <span className="text-sm font-bold">
                       {selectedProject.stats.forks}
                     </span>
                   </div>
-                  <span className="text-[10px] text-gray-500">
+
+                  <span
+                    className={`mt-1 block text-[10px] ${
+                      dark ? "text-gray-500" : "text-gray-400"
+                    }`}
+                  >
                     Forks
                   </span>
                 </div>
 
-                <div className="p-3 rounded-lg bg-gray-800">
+                <div
+                  className={`rounded-xl border p-3 ${
+                    dark
+                      ? "border-gray-700 bg-gray-800"
+                      : "border-gray-200 bg-gray-50"
+                  }`}
+                >
                   <div className="flex items-center gap-2 text-purple-400">
-                    <Zap size={14} />
+                    <Code2 size={14} />
                     <span className="text-sm font-bold">
                       {selectedProject.stats.commits}
                     </span>
                   </div>
-                  <span className="text-[10px] text-gray-500">
+
+                  <span
+                    className={`mt-1 block text-[10px] ${
+                      dark ? "text-gray-500" : "text-gray-400"
+                    }`}
+                  >
                     Commits
                   </span>
                 </div>
               </div>
 
-              {/* Description */}
-              <div className="mb-6">
+              {/* About */}
+              <div className="mb-7">
                 <h4
-                  className={`text-sm font-bold uppercase tracking-wider mb-2 ${
-                    dark ? 'text-cyan-400' : 'text-purple-600'
+                  className={`mb-2 text-sm font-bold uppercase tracking-wider ${
+                    dark ? "text-cyan-400" : "text-purple-600"
                   }`}
                 >
                   About Project
                 </h4>
 
                 <p
-                  className={`text-sm leading-relaxed ${
-                    dark ? 'text-gray-400' : 'text-gray-600'
+                  className={`text-sm leading-7 ${
+                    dark ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
                   {selectedProject.fullDescription}
@@ -517,41 +612,43 @@ const Projects = () => {
               </div>
 
               {/* Features */}
-              <div className="mb-6">
+              <div className="mb-7">
                 <h4
-                  className={`text-sm font-bold uppercase tracking-wider mb-3 ${
-                    dark ? 'text-cyan-400' : 'text-purple-600'
+                  className={`mb-3 text-sm font-bold uppercase tracking-wider ${
+                    dark ? "text-cyan-400" : "text-purple-600"
                   }`}
                 >
                   Key Features
                 </h4>
 
-                <div className="grid sm:grid-cols-2 gap-2">
+                <ul className="grid gap-2 sm:grid-cols-2">
                   {selectedProject.features.map((feature) => (
-                    <div
+                    <li
                       key={feature}
-                      className={`flex items-start gap-2 p-3 rounded-lg text-xs ${
+                      className={`flex items-start gap-2 rounded-lg p-3 text-xs leading-5 ${
                         dark
-                          ? 'bg-gray-800 text-gray-400'
-                          : 'bg-gray-50 text-gray-600'
+                          ? "bg-gray-800 text-gray-400"
+                          : "bg-gray-50 text-gray-600"
                       }`}
                     >
                       <span
-                        className={`mt-1 w-1.5 h-1.5 rounded-full shrink-0 ${
-                          dark ? 'bg-cyan-400' : 'bg-purple-500'
+                        className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
+                          dark ? "bg-cyan-400" : "bg-purple-500"
                         }`}
+                        aria-hidden="true"
                       />
+
                       {feature}
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
               {/* Technologies */}
-              <div className="mb-6">
+              <div className="mb-7">
                 <h4
-                  className={`text-sm font-bold uppercase tracking-wider mb-3 ${
-                    dark ? 'text-cyan-400' : 'text-purple-600'
+                  className={`mb-3 text-sm font-bold uppercase tracking-wider ${
+                    dark ? "text-cyan-400" : "text-purple-600"
                   }`}
                 >
                   Technologies
@@ -561,10 +658,10 @@ const Projects = () => {
                   {selectedProject.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className={`px-3 py-1.5 rounded-md text-xs font-medium ${
+                      className={`rounded-md border px-3 py-1.5 text-xs font-medium ${
                         dark
-                          ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
-                          : 'bg-purple-500/10 text-purple-600 border border-purple-500/20'
+                          ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-400"
+                          : "border-purple-500/20 bg-purple-500/10 text-purple-600"
                       }`}
                     >
                       {tech}
@@ -574,20 +671,21 @@ const Projects = () => {
               </div>
 
               {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
-
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href={selectedProject.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold ${
+                  onClick={(event) => event.stopPropagation()}
+                  className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
                     dark
-                      ? 'bg-gray-800 text-white hover:bg-gray-700'
-                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                      ? "bg-gray-800 text-white hover:bg-gray-700"
+                      : "bg-gray-100 text-gray-900 hover:bg-gray-200"
                   }`}
                 >
-                  <Github size={17} />
+                  <Github size={17} aria-hidden="true" />
                   View Source
+                  <ExternalLink size={13} aria-hidden="true" />
                 </a>
 
                 {selectedProject.live && (
@@ -595,13 +693,14 @@ const Projects = () => {
                     href={selectedProject.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold text-white ${
+                    onClick={(event) => event.stopPropagation()}
+                    className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 ${
                       dark
-                        ? 'bg-gradient-to-r from-cyan-500 to-purple-500'
-                        : 'bg-gradient-to-r from-purple-500 to-blue-500'
+                        ? "bg-gradient-to-r from-cyan-500 to-purple-500"
+                        : "bg-gradient-to-r from-purple-500 to-blue-500"
                     }`}
                   >
-                    <ExternalLink size={17} />
+                    <ExternalLink size={17} aria-hidden="true" />
                     Live Demo
                   </a>
                 )}
