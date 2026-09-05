@@ -32,29 +32,28 @@ const Contact = () => {
   const formRef = useRef(null);
 
   const { theme } = useTheme();
-  const dark = theme === "dark";
 
-  // ==========================================
+  // =========================================================
   // CONTACT DATA
-  // ==========================================
+  // =========================================================
 
   const contactDetails = [
     {
-      icon: <Mail size={20} aria-hidden="true" />,
+      icon: <Mail size={20} />,
       label: "Email",
       value: "khandaljatin2187@gmail.com",
       href: "mailto:khandaljatin2187@gmail.com",
       color: "#EA4335",
     },
     {
-      icon: <Phone size={20} aria-hidden="true" />,
+      icon: <Phone size={20} />,
       label: "Phone",
       value: "+91 9664255659",
       href: "tel:+919664255659",
       color: "#34A853",
     },
     {
-      icon: <MapPin size={20} aria-hidden="true" />,
+      icon: <MapPin size={20} />,
       label: "Location",
       value: "Jaipur, India",
       href: null,
@@ -62,32 +61,27 @@ const Contact = () => {
     },
   ];
 
-  // IMPORTANT:
-  // Existing social links are preserved exactly.
   const socialLinks = [
     {
-      icon: <Github size={20} aria-hidden="true" />,
+      icon: <Github size={20} />,
       href: "https://github.com/jatinkhandal001",
       label: "GitHub",
-      color: "#ffffff",
     },
     {
-      icon: <Linkedin size={20} aria-hidden="true" />,
+      icon: <Linkedin size={20} />,
       href: "https://linkedin.com/in/jatinkhandal001",
       label: "LinkedIn",
-      color: "#0077B5",
     },
     {
-      icon: <Twitter size={20} aria-hidden="true" />,
+      icon: <Twitter size={20} />,
       href: "https://twitter.com",
       label: "Twitter",
-      color: "#1DA1F2",
     },
   ];
 
-  // ==========================================
+  // =========================================================
   // GSAP
-  // ==========================================
+  // =========================================================
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -99,64 +93,42 @@ const Contact = () => {
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
-      const elements = {
-        badge: section.querySelector(".contact-badge"),
-        heading: section.querySelector(".contact-heading"),
-        subtitle: section.querySelector(".contact-subtitle"),
-        info: section.querySelector(".contact-info"),
-        cards: gsap.utils.toArray(".contact-card"),
-        socials: gsap.utils.toArray(".social-link"),
-        form: section.querySelector(".contact-form-panel"),
-        fields: gsap.utils.toArray(".contact-field"),
-      };
+      const animatedElements = gsap.utils.toArray(
+        ".contact-animate"
+      );
 
       if (reduceMotion) {
-        gsap.set(
-          [
-            elements.badge,
-            elements.heading,
-            elements.subtitle,
-            elements.info,
-            elements.form,
-            ...elements.cards,
-            ...elements.socials,
-            ...elements.fields,
-          ],
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-          }
-        );
+        gsap.set(animatedElements, {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          scale: 1,
+        });
 
         return;
       }
 
-      // Header
       gsap.fromTo(
-        [elements.badge, elements.heading, elements.subtitle],
+        ".contact-hero",
         {
           opacity: 0,
-          y: 25,
+          y: 35,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 0.65,
-          stagger: 0.08,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: elements.heading,
+            trigger: ".contact-hero",
             start: "top 85%",
             once: true,
           },
         }
       );
 
-      // Left side
       gsap.fromTo(
-        elements.info,
+        ".contact-intro",
         {
           opacity: 0,
           x: -45,
@@ -167,16 +139,15 @@ const Contact = () => {
           duration: 0.75,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: elements.info,
+            trigger: ".contact-intro",
             start: "top 82%",
             once: true,
           },
         }
       );
 
-      // Cards
       gsap.fromTo(
-        elements.cards,
+        ".contact-info-item",
         {
           opacity: 0,
           y: 20,
@@ -185,44 +156,40 @@ const Contact = () => {
           opacity: 1,
           y: 0,
           duration: 0.5,
-          stagger: 0.08,
-          ease: "power2.out",
+          stagger: 0.1,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: elements.info,
+            trigger: ".contact-intro",
             start: "top 78%",
             once: true,
           },
         }
       );
 
-      // Socials
-      if (elements.socials.length) {
-        gsap.fromTo(
-          elements.socials,
-          {
-            opacity: 0,
-            scale: 0.85,
-            y: 12,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.07,
-            ease: "back.out(1.5)",
-            scrollTrigger: {
-              trigger: elements.socials[0],
-              start: "top 90%",
-              once: true,
-            },
-          }
-        );
-      }
-
-      // Form
       gsap.fromTo(
-        elements.form,
+        ".contact-social",
+        {
+          opacity: 0,
+          scale: 0.85,
+          y: 15,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.45,
+          stagger: 0.08,
+          ease: "back.out(1.5)",
+          scrollTrigger: {
+            trigger: ".contact-socials",
+            start: "top 90%",
+            once: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".contact-form-panel",
         {
           opacity: 0,
           x: 45,
@@ -233,28 +200,27 @@ const Contact = () => {
           duration: 0.75,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: elements.form,
+            trigger: ".contact-form-panel",
             start: "top 82%",
             once: true,
           },
         }
       );
 
-      // Fields
       gsap.fromTo(
-        elements.fields,
+        ".form-field",
         {
           opacity: 0,
-          y: 12,
+          y: 15,
         },
         {
           opacity: 1,
           y: 0,
           duration: 0.4,
-          stagger: 0.07,
+          stagger: 0.08,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: elements.form,
+            trigger: ".contact-form-panel",
             start: "top 78%",
             once: true,
           },
@@ -262,18 +228,19 @@ const Contact = () => {
       );
     }, section);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
-  // ==========================================
+  // =========================================================
   // FORM SUBMIT
-  // ==========================================
+  // =========================================================
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
-      setSubmitStatus("Please complete all fields.");
       return;
     }
 
@@ -288,14 +255,15 @@ const Contact = () => {
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
     );
 
-    // Existing mailto functionality preserved.
     window.location.href =
       `mailto:khandaljatin2187@gmail.com?subject=${subject}&body=${body}`;
 
     if (formRef.current) {
       gsap.fromTo(
         formRef.current,
-        { scale: 0.985 },
+        {
+          scale: 0.985,
+        },
         {
           scale: 1,
           duration: 0.35,
@@ -319,428 +287,438 @@ const Contact = () => {
     }, 500);
   };
 
-  // ==========================================
+  // =========================================================
   // INPUT CHANGE
-  // ==========================================
+  // =========================================================
 
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-
-    if (submitStatus) {
-      setSubmitStatus("");
-    }
   };
 
-  // ==========================================
-  // INPUT STYLE
-  // ==========================================
+  // =========================================================
+  // THEME CLASSES
+  // =========================================================
 
-  const inputClass = (field) => `
-    w-full rounded-xl border px-4 py-3.5
-    text-sm sm:text-base
-    outline-none
-    transition-all duration-300
-    ${
-      dark
-        ? "border-gray-700 bg-gray-950/70 text-white placeholder:text-gray-600 focus:border-cyan-400"
-        : "border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-purple-500"
-    }
-  `;
+  const dark = theme === "dark";
+
+  const headingGradient = dark
+    ? "from-cyan-400 via-blue-400 to-purple-400"
+    : "from-purple-600 via-blue-600 to-cyan-600";
+
+  const panelClass = dark
+    ? "border-white/10 bg-white/[0.035]"
+    : "border-gray-200 bg-white";
+
+  const secondaryText = dark
+    ? "text-gray-400"
+    : "text-gray-600";
+
+  const primaryText = dark
+    ? "text-white"
+    : "text-gray-900";
+
+  const inputClass = dark
+    ? "border-white/10 bg-black/20 text-white placeholder:text-gray-600 focus:border-cyan-400/70"
+    : "border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-purple-500";
 
   return (
     <section
       id="contact"
       ref={sectionRef}
       aria-labelledby="contact-title"
-      className={`relative overflow-hidden py-20 sm:py-24 ${
-        dark ? "bg-gray-900" : "bg-gray-50"
+      className={`relative overflow-hidden py-20 sm:py-24 lg:py-28 ${
+        dark ? "bg-gray-950" : "bg-gray-50"
       }`}
     >
-      {/* ==========================================
+      {/* =====================================================
           BACKGROUND
-      ========================================== */}
+      ===================================================== */}
 
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden="true"
       >
-        {/* Main glow */}
         <div
-          className={`absolute left-1/2 top-0 h-[500px] w-[500px]
-          -translate-x-1/2 rounded-full blur-[130px]
-          ${
-            dark
-              ? "bg-cyan-500/10"
-              : "bg-purple-500/10"
+          className={`absolute left-[10%] top-[15%] h-72 w-72 rounded-full blur-[110px] ${
+            dark ? "bg-cyan-500/[0.07]" : "bg-purple-500/[0.08]"
           }`}
         />
 
-        {/* Secondary glow */}
         <div
-          className={`absolute bottom-0 right-0 h-[300px] w-[300px]
-          rounded-full blur-[120px]
-          ${
-            dark
-              ? "bg-purple-500/8"
-              : "bg-blue-500/8"
+          className={`absolute bottom-[5%] right-[5%] h-80 w-80 rounded-full blur-[120px] ${
+            dark ? "bg-purple-500/[0.07]" : "bg-cyan-500/[0.06]"
           }`}
         />
 
-        {/* Grid */}
         <div
-          className="absolute inset-0 opacity-[0.035]"
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: `
               linear-gradient(
-                rgba(34,211,238,0.7) 1px,
+                rgba(34,211,238,0.8) 1px,
                 transparent 1px
               ),
               linear-gradient(
                 90deg,
-                rgba(34,211,238,0.7) 1px,
+                rgba(34,211,238,0.8) 1px,
                 transparent 1px
               )
             `,
-            backgroundSize: "45px 45px",
+            backgroundSize: "50px 50px",
           }}
         />
       </div>
 
-      {/* ==========================================
+      {/* =====================================================
           MAIN CONTAINER
-      ========================================== */}
+      ===================================================== */}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* ===================================================
+            HERO HEADER
+        =================================================== */}
 
-        {/* ==========================================
-            HEADER
-        ========================================== */}
-
-        <header className="mb-14 text-center sm:mb-16">
-
-          <div
-            className={`contact-badge mb-5 inline-flex items-center gap-2
-            rounded-full border px-4 py-2 text-xs font-semibold
-            ${
-              dark
-                ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-400"
-                : "border-purple-500/20 bg-purple-500/10 text-purple-600"
-            }`}
-          >
-            <Sparkles
-              size={14}
-              aria-hidden="true"
-            />
-
-            <span>LET'S CONNECT</span>
-          </div>
-
-          <h2
-            id="contact-title"
-            className={`contact-heading text-4xl font-bold tracking-tight
-            sm:text-5xl md:text-6xl ${
-              dark
-                ? "bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400"
-                : "bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600"
-            } bg-clip-text text-transparent`}
-            style={{
-              fontFamily: "Orbitron, monospace",
-            }}
-          >
-            CONNECT
-          </h2>
-
-          <p
-            className={`contact-subtitle mx-auto mt-5 max-w-2xl
-            text-base leading-relaxed sm:text-lg ${
-              dark ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
-            Have an idea, project, collaboration, or opportunity?
-            Let's turn it into something meaningful with technology.
-          </p>
-        </header>
-
-        {/* ==========================================
-            CONTENT
-        ========================================== */}
-
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
-
-          {/* ========================================
-              LEFT — CONTACT INFO
-          ======================================== */}
-
-          <div className="contact-info">
-
-            <div
-              className={`mb-6 rounded-2xl border p-6 sm:p-7 ${
-                dark
-                  ? "border-gray-800 bg-gray-950/50"
-                  : "border-gray-200 bg-white"
-              }`}
-            >
-              {/* Status */}
-
+        <div className="contact-hero mb-14 sm:mb-16 lg:mb-20">
+          <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
               <div
-                className={`mb-6 inline-flex items-center gap-2 rounded-full
-                border px-3 py-1.5 text-xs font-medium ${
+                className={`mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] ${
                   dark
-                    ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-                    : "border-emerald-500/20 bg-emerald-500/10 text-emerald-600"
+                    ? "border-cyan-400/20 bg-cyan-400/[0.06] text-cyan-400"
+                    : "border-purple-300 bg-purple-50 text-purple-600"
                 }`}
               >
-                <span className="relative flex h-2 w-2">
-                  <span
-                    className="absolute inline-flex h-full w-full
-                    animate-ping rounded-full bg-emerald-400 opacity-75"
-                  />
-                  <span
-                    className="relative inline-flex h-2 w-2
-                    rounded-full bg-emerald-500"
-                  />
-                </span>
-
-                Available for opportunities
+                <Sparkles size={13} />
+                Let's Connect
               </div>
 
-              <h3
-                className={`text-2xl font-bold sm:text-3xl ${
-                  dark ? "text-white" : "text-gray-900"
-                }`}
+              <h2
+                id="contact-title"
+                className={`text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl`}
+                style={{
+                  fontFamily: "Orbitron, monospace",
+                }}
               >
-                Let's Work Together
-              </h3>
+                <span
+                  className={`bg-gradient-to-r ${headingGradient} bg-clip-text text-transparent`}
+                >
+                  LET'S BUILD
+                </span>
+                <br />
+                <span className={primaryText}>SOMETHING GREAT.</span>
+              </h2>
 
               <p
-                className={`mt-3 text-sm leading-relaxed ${
-                  dark ? "text-gray-400" : "text-gray-600"
-                }`}
+                className={`mt-6 max-w-2xl text-base leading-7 sm:text-lg ${secondaryText}`}
               >
-                I'm interested in AI, Machine Learning, Data Science,
-                Computer Vision, and modern software development.
-                If you have an interesting idea or opportunity,
-                feel free to reach out.
+                Have an idea, project, or opportunity in mind?
+                Let's turn it into a practical digital solution
+                using AI, Machine Learning, Data Science, and
+                modern web technologies.
               </p>
             </div>
 
-            {/* Contact cards */}
+            {/* Availability */}
 
-            <address className="space-y-3 not-italic">
-              {contactDetails.map((contact) => {
-                const content = (
-                  <>
-                    <div
-                      className="flex h-11 w-11 shrink-0 items-center
-                      justify-center rounded-xl text-white
-                      transition-transform duration-300
-                      group-hover:scale-110"
-                      style={{
-                        backgroundColor: contact.color,
-                      }}
-                      aria-hidden="true"
-                    >
-                      {contact.icon}
-                    </div>
+            <div
+              className={`flex shrink-0 items-center gap-3 self-start rounded-2xl border px-4 py-3 lg:self-end ${
+                dark
+                  ? "border-emerald-400/20 bg-emerald-400/[0.05]"
+                  : "border-emerald-200 bg-emerald-50"
+              }`}
+            >
+              <span className="relative flex h-3 w-3">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-400" />
+              </span>
 
-                    <div className="min-w-0 flex-1">
-                      <p
-                        className={`text-xs font-medium uppercase
-                        tracking-wider ${
+              <div>
+                <p
+                  className={`text-xs font-bold uppercase tracking-wider ${
+                    dark
+                      ? "text-emerald-400"
+                      : "text-emerald-700"
+                  }`}
+                >
+                  Available
+                </p>
+
+                <p
+                  className={`text-xs ${secondaryText}`}
+                >
+                  Open to opportunities
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ===================================================
+            MAIN CONTACT COMPOSITION
+        =================================================== */}
+
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+          {/* =================================================
+              LEFT — INTRO / CONTACT
+          ================================================= */}
+
+          <div
+            className={`contact-intro relative overflow-hidden rounded-3xl border p-6 sm:p-8 lg:p-9 ${panelClass}`}
+          >
+            {/* Decorative corner */}
+
+            <div
+              className={`absolute -right-16 -top-16 h-40 w-40 rounded-full blur-3xl ${
+                dark
+                  ? "bg-cyan-400/10"
+                  : "bg-purple-400/10"
+              }`}
+            />
+
+            <div className="relative z-10">
+              <div className="mb-8">
+                <p
+                  className={`mb-2 text-xs font-bold uppercase tracking-[0.22em] ${
+                    dark
+                      ? "text-cyan-400"
+                      : "text-purple-600"
+                  }`}
+                >
+                  Start a conversation
+                </p>
+
+                <h3
+                  className={`text-2xl font-bold sm:text-3xl ${primaryText}`}
+                >
+                  Let's talk about your next idea.
+                </h3>
+
+                <p
+                  className={`mt-3 text-sm leading-6 ${secondaryText}`}
+                >
+                  Whether you're building an AI product,
+                  web application, data solution, or something
+                  completely new, feel free to reach out.
+                </p>
+              </div>
+
+              {/* Skill chips */}
+
+              <div className="mb-8 flex flex-wrap gap-2">
+                {[
+                  "AI / ML",
+                  "Data Science",
+                  "Computer Vision",
+                  "ReactJS",
+                  "FastAPI",
+                  "MongoDB",
+                ].map((skill) => (
+                  <span
+                    key={skill}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-medium ${
+                      dark
+                        ? "border-white/10 bg-white/[0.04] text-gray-300"
+                        : "border-gray-200 bg-gray-50 text-gray-600"
+                    }`}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              {/* Contact details */}
+
+              <div className="space-y-3">
+                {contactDetails.map((contact) => {
+                  const content = (
+                    <>
+                      <div
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white"
+                        style={{
+                          backgroundColor: contact.color,
+                        }}
+                      >
+                        {contact.icon}
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <p
+                          className={`text-xs font-semibold uppercase tracking-wider ${
+                            dark
+                              ? "text-gray-500"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          {contact.label}
+                        </p>
+
+                        <p
+                          className={`mt-1 break-all text-sm font-medium ${
+                            dark
+                              ? "text-gray-200"
+                              : "text-gray-800"
+                          }`}
+                        >
+                          {contact.value}
+                        </p>
+                      </div>
+
+                      {contact.href && (
+                        <ArrowUpRight
+                          size={17}
+                          className={`shrink-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 ${
+                            dark
+                              ? "text-cyan-400"
+                              : "text-purple-600"
+                          }`}
+                        />
+                      )}
+                    </>
+                  );
+
+                  if (contact.href) {
+                    return (
+                      <a
+                        key={contact.label}
+                        href={contact.href}
+                        className={`contact-info-item group flex items-center gap-4 rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 ${
                           dark
-                            ? "text-gray-500"
-                            : "text-gray-400"
+                            ? "border-white/10 bg-white/[0.025] hover:border-cyan-400/30 hover:bg-white/[0.045]"
+                            : "border-gray-200 bg-gray-50 hover:border-purple-300 hover:bg-white"
                         }`}
                       >
-                        {contact.label}
-                      </p>
+                        {content}
+                      </a>
+                    );
+                  }
 
-                      <p
-                        className={`mt-1 break-all text-sm font-medium ${
-                          dark
-                            ? "text-gray-200"
-                            : "text-gray-800"
-                        }`}
-                      >
-                        {contact.value}
-                      </p>
-                    </div>
-
-                    {contact.href && (
-                      <ArrowUpRight
-                        size={18}
-                        aria-hidden="true"
-                        className={`shrink-0 opacity-0
-                        transition-all duration-300
-                        group-hover:translate-x-1
-                        group-hover:-translate-y-1
-                        group-hover:opacity-100 ${
-                          dark
-                            ? "text-cyan-400"
-                            : "text-purple-600"
-                        }`}
-                      />
-                    )}
-                  </>
-                );
-
-                if (contact.href) {
                   return (
-                    <a
+                    <div
                       key={contact.label}
-                      href={contact.href}
-                      aria-label={`${contact.label}: ${contact.value}`}
-                      className={`contact-card group flex items-center
-                      gap-4 rounded-2xl border p-4
-                      transition-all duration-300
-                      hover:-translate-y-1
-                      focus:outline-none focus:ring-2 ${
+                      className={`contact-info-item flex items-center gap-4 rounded-2xl border p-4 ${
                         dark
-                          ? "border-gray-800 bg-gray-950/60 hover:border-cyan-500/40 focus:ring-cyan-400/30"
-                          : "border-gray-200 bg-white hover:border-purple-400/50 focus:ring-purple-500/30"
+                          ? "border-white/10 bg-white/[0.025]"
+                          : "border-gray-200 bg-gray-50"
                       }`}
                     >
                       {content}
-                    </a>
+                    </div>
                   );
-                }
+                })}
+              </div>
 
-                return (
-                  <div
-                    key={contact.label}
-                    className={`contact-card group flex items-center
-                    gap-4 rounded-2xl border p-4 ${
-                      dark
-                        ? "border-gray-800 bg-gray-950/60"
-                        : "border-gray-200 bg-white"
-                    }`}
+              {/* Socials */}
+
+              <div className="contact-socials mt-8 border-t pt-7 border-gray-700/20">
+                <div className="mb-4 flex items-center justify-between">
+                  <p
+                    className={`text-sm font-semibold ${primaryText}`}
                   >
-                    {content}
-                  </div>
-                );
-              })}
-            </address>
+                    Find me online
+                  </p>
 
-            {/* Social */}
-
-            <div className="mt-7">
-              <h4
-                className={`mb-4 text-sm font-semibold ${
-                  dark ? "text-gray-200" : "text-gray-800"
-                }`}
-              >
-                Find me online
-              </h4>
-
-              <nav
-                aria-label="Social media profiles"
-                className="flex gap-3"
-              >
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit my ${link.label} profile`}
-                    className={`social-link group relative flex h-11
-                    w-11 items-center justify-center overflow-hidden
-                    rounded-xl border transition-all duration-300
-                    hover:-translate-y-1 hover:scale-105
-                    focus:outline-none focus:ring-2 ${
-                      dark
-                        ? "border-gray-800 bg-gray-950 text-gray-400 focus:ring-cyan-400/30"
-                        : "border-gray-200 bg-white text-gray-600 focus:ring-purple-500/30"
-                    }`}
+                  <span
+                    className={`text-xs ${secondaryText}`}
                   >
-                    <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                      {link.icon}
-                    </span>
+                    Social profiles
+                  </span>
+                </div>
 
-                    <span
-                      className="absolute inset-0 opacity-0
-                      transition-opacity duration-300
-                      group-hover:opacity-100"
-                      style={{
-                        backgroundColor: link.color,
-                      }}
-                      aria-hidden="true"
-                    />
-                  </a>
-                ))}
-              </nav>
+                <div className="flex gap-2">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className={`contact-social group flex h-11 flex-1 items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-all duration-300 hover:-translate-y-1 ${
+                        dark
+                          ? "border-white/10 bg-white/[0.025] text-gray-400 hover:border-cyan-400/30 hover:bg-cyan-400/[0.05] hover:text-cyan-400"
+                          : "border-gray-200 bg-white text-gray-600 hover:border-purple-300 hover:bg-purple-50 hover:text-purple-600"
+                      }`}
+                    >
+                      {social.icon}
+                      <span className="hidden sm:inline">
+                        {social.label}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* ========================================
+          {/* =================================================
               RIGHT — FORM
-          ======================================== */}
+          ================================================= */}
 
           <div
-            ref={formRef}
-            className={`contact-form-panel rounded-3xl border p-6
-            shadow-2xl sm:p-8 ${
-              dark
-                ? "border-gray-800 bg-gray-950/80 shadow-black/20"
-                : "border-gray-200 bg-white shadow-gray-200/50"
-            }`}
+            className={`contact-form-panel relative overflow-hidden rounded-3xl border p-6 sm:p-8 lg:p-9 ${panelClass}`}
           >
-            {/* Form heading */}
+            {/* Form header */}
 
-            <div className="mb-7">
-              <div
-                className={`mb-3 flex h-10 w-10 items-center
-                justify-center rounded-xl ${
-                  dark
-                    ? "bg-cyan-500/10 text-cyan-400"
-                    : "bg-purple-500/10 text-purple-600"
-                }`}
-              >
-                <Mail
-                  size={19}
-                  aria-hidden="true"
-                />
+            <div className="mb-8">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p
+                    className={`mb-2 text-xs font-bold uppercase tracking-[0.22em] ${
+                      dark
+                        ? "text-purple-400"
+                        : "text-purple-600"
+                    }`}
+                  >
+                    Send a message
+                  </p>
+
+                  <h3
+                    className={`text-2xl font-bold sm:text-3xl ${primaryText}`}
+                  >
+                    Tell me about it.
+                  </h3>
+                </div>
+
+                <div
+                  className={`hidden h-12 w-12 items-center justify-center rounded-2xl sm:flex ${
+                    dark
+                      ? "bg-cyan-400/[0.08] text-cyan-400"
+                      : "bg-purple-50 text-purple-600"
+                  }`}
+                >
+                  <Send size={21} />
+                </div>
               </div>
 
-              <h3
-                className={`text-2xl font-bold ${
-                  dark ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Send a Message
-              </h3>
-
               <p
-                className={`mt-2 text-sm ${
-                  dark ? "text-gray-500" : "text-gray-500"
-                }`}
+                className={`mt-3 max-w-xl text-sm leading-6 ${secondaryText}`}
               >
-                Tell me what you're working on and I'll get back to you.
+                Fill in the details below. Your email client
+                will open with the message prepared for sending.
               </p>
             </div>
 
+            {/* Form */}
+
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
-              aria-label="Contact form"
               className="space-y-5"
             >
               {/* Name */}
 
-              <div className="contact-field">
+              <div className="form-field">
                 <label
-                  htmlFor="contact-name"
-                  className={`mb-2 block text-sm font-medium ${
-                    dark ? "text-gray-300" : "text-gray-700"
-                  }`}
+                  htmlFor="name"
+                  className={`mb-2 block text-sm font-semibold ${primaryText}`}
                 >
                   Your Name
                 </label>
 
                 <input
-                  id="contact-name"
+                  id="name"
                   name="name"
                   type="text"
                   value={formData.name}
@@ -748,16 +726,14 @@ const Contact = () => {
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="Enter your name"
-                  autoComplete="name"
                   required
-                  aria-required="true"
-                  className={inputClass("name")}
+                  className={`w-full rounded-2xl border px-5 py-4 text-sm outline-none transition-all duration-300 sm:text-base ${inputClass}`}
                   style={{
                     boxShadow:
                       focusedField === "name"
                         ? dark
-                          ? "0 0 0 3px rgba(6,182,212,0.10)"
-                          : "0 0 0 3px rgba(139,92,246,0.10)"
+                          ? "0 0 0 3px rgba(34,211,238,0.08)"
+                          : "0 0 0 3px rgba(139,92,246,0.08)"
                         : "none",
                   }}
                 />
@@ -765,18 +741,16 @@ const Contact = () => {
 
               {/* Email */}
 
-              <div className="contact-field">
+              <div className="form-field">
                 <label
-                  htmlFor="contact-email"
-                  className={`mb-2 block text-sm font-medium ${
-                    dark ? "text-gray-300" : "text-gray-700"
-                  }`}
+                  htmlFor="email"
+                  className={`mb-2 block text-sm font-semibold ${primaryText}`}
                 >
                   Email Address
                 </label>
 
                 <input
-                  id="contact-email"
+                  id="email"
                   name="email"
                   type="email"
                   value={formData.email}
@@ -784,16 +758,14 @@ const Contact = () => {
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="you@example.com"
-                  autoComplete="email"
                   required
-                  aria-required="true"
-                  className={inputClass("email")}
+                  className={`w-full rounded-2xl border px-5 py-4 text-sm outline-none transition-all duration-300 sm:text-base ${inputClass}`}
                   style={{
                     boxShadow:
                       focusedField === "email"
                         ? dark
-                          ? "0 0 0 3px rgba(6,182,212,0.10)"
-                          : "0 0 0 3px rgba(139,92,246,0.10)"
+                          ? "0 0 0 3px rgba(34,211,238,0.08)"
+                          : "0 0 0 3px rgba(139,92,246,0.08)"
                         : "none",
                   }}
                 />
@@ -801,34 +773,43 @@ const Contact = () => {
 
               {/* Message */}
 
-              <div className="contact-field">
-                <label
-                  htmlFor="contact-message"
-                  className={`mb-2 block text-sm font-medium ${
-                    dark ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  Your Message
-                </label>
+              <div className="form-field">
+                <div className="mb-2 flex items-center justify-between">
+                  <label
+                    htmlFor="message"
+                    className={`block text-sm font-semibold ${primaryText}`}
+                  >
+                    Your Message
+                  </label>
+
+                  <span
+                    className={`text-xs ${secondaryText}`}
+                  >
+                    {formData.message.length}/1000
+                  </span>
+                </div>
 
                 <textarea
-                  id="contact-message"
+                  id="message"
                   name="message"
                   value={formData.message}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 1000) {
+                      handleChange(e);
+                    }
+                  }}
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="Tell me about your project, idea, or opportunity..."
-                  rows={6}
+                  rows={7}
                   required
-                  aria-required="true"
-                  className={`${inputClass("message")} resize-none`}
+                  className={`w-full resize-none rounded-2xl border px-5 py-4 text-sm leading-6 outline-none transition-all duration-300 sm:text-base ${inputClass}`}
                   style={{
                     boxShadow:
                       focusedField === "message"
                         ? dark
-                          ? "0 0 0 3px rgba(6,182,212,0.10)"
-                          : "0 0 0 3px rgba(139,92,246,0.10)"
+                          ? "0 0 0 3px rgba(34,211,238,0.08)"
+                          : "0 0 0 3px rgba(139,92,246,0.08)"
                         : "none",
                   }}
                 />
@@ -836,82 +817,122 @@ const Contact = () => {
 
               {/* Submit */}
 
-              <div className="contact-field pt-1">
+              <div className="form-field pt-1">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  aria-busy={isSubmitting}
-                  className={`group relative flex w-full
-                  items-center justify-center gap-3 overflow-hidden
-                  rounded-xl px-6 py-4 font-semibold text-white
-                  transition-all duration-300
-                  hover:-translate-y-1 hover:shadow-xl
-                  focus:outline-none focus:ring-2
-                  disabled:cursor-not-allowed disabled:opacity-60 ${
+                  className={`group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl px-6 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-60 ${
                     dark
-                      ? "bg-gradient-to-r from-cyan-500 to-purple-500 hover:shadow-cyan-500/20 focus:ring-cyan-400/30"
-                      : "bg-gradient-to-r from-purple-500 to-blue-500 hover:shadow-purple-500/20 focus:ring-purple-500/30"
+                      ? "bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:shadow-cyan-500/20"
+                      : "bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 hover:shadow-purple-500/20"
                   }`}
                 >
                   <span className="relative z-10 flex items-center gap-3">
                     {isSubmitting ? (
                       <>
-                        <span
-                          className="h-5 w-5 animate-spin rounded-full
-                          border-2 border-white border-t-transparent"
-                          aria-hidden="true"
-                        />
-
-                        Sending...
+                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        Opening Mail...
                       </>
                     ) : (
                       <>
-                        <Send
-                          size={18}
-                          aria-hidden="true"
+                        <Send size={18} />
+                        Send Message
+                        <ArrowUpRight
+                          size={17}
+                          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                         />
-
-                        Launch Message
                       </>
                     )}
                   </span>
 
                   <span
-                    className="absolute inset-0 -translate-x-full
-                    bg-gradient-to-r from-transparent via-white/15
-                    to-transparent transition-transform duration-700
-                    group-hover:translate-x-full"
+                    className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full"
                     aria-hidden="true"
                   />
                 </button>
               </div>
 
+              {/* Privacy / behavior note */}
+
+              <div
+                className={`flex items-start gap-2 rounded-xl border p-3 text-xs leading-5 ${
+                  dark
+                    ? "border-white/10 bg-white/[0.02] text-gray-500"
+                    : "border-gray-200 bg-gray-50 text-gray-500"
+                }`}
+              >
+                <CheckCircle2
+                  size={15}
+                  className={`mt-0.5 shrink-0 ${
+                    dark
+                      ? "text-cyan-400"
+                      : "text-purple-600"
+                  }`}
+                />
+
+                <span>
+                  Your message stays in your email workflow.
+                  No external form service is used.
+                </span>
+              </div>
+
               {/* Status */}
 
               {submitStatus && (
-                <div
-                  className={`flex items-center justify-center gap-2
-                  rounded-xl border px-4 py-3 text-sm ${
-                    submitStatus.includes("complete")
-                      ? dark
-                        ? "border-yellow-500/20 bg-yellow-500/10 text-yellow-400"
-                        : "border-yellow-500/20 bg-yellow-500/10 text-yellow-700"
-                      : dark
-                        ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-400"
-                        : "border-purple-500/20 bg-purple-500/10 text-purple-600"
+                <p
+                  className={`flex items-center justify-center gap-2 text-center text-sm ${
+                    dark
+                      ? "text-cyan-400"
+                      : "text-purple-600"
                   }`}
                   aria-live="polite"
-                  role="status"
                 >
-                  <CheckCircle2
-                    size={16}
-                    aria-hidden="true"
-                  />
-
+                  <CheckCircle2 size={16} />
                   {submitStatus}
-                </div>
+                </p>
               )}
             </form>
+          </div>
+        </div>
+
+        {/* ===================================================
+            BOTTOM CTA STRIP
+        =================================================== */}
+
+        <div
+          className={`mt-6 rounded-2xl border px-5 py-4 ${
+            dark
+              ? "border-white/10 bg-white/[0.02]"
+              : "border-gray-200 bg-white"
+          }`}
+        >
+          <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
+            <div>
+              <p
+                className={`text-sm font-semibold ${primaryText}`}
+              >
+                Building something interesting?
+              </p>
+
+              <p
+                className={`mt-1 text-xs ${secondaryText}`}
+              >
+                I'm always interested in meaningful technology
+                projects and new ideas.
+              </p>
+            </div>
+
+            <a
+              href="mailto:khandaljatin2187@gmail.com"
+              className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors ${
+                dark
+                  ? "text-cyan-400 hover:text-cyan-300"
+                  : "text-purple-600 hover:text-purple-700"
+              }`}
+            >
+              Email me
+              <ArrowUpRight size={16} />
+            </a>
           </div>
         </div>
       </div>
