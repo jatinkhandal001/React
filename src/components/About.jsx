@@ -1,5 +1,5 @@
-import React from 'react';
-import { Code, Zap, Heart } from 'lucide-react';
+import React from "react";
+import { Code, Zap, Heart } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext.jsx";
 
 const About = () => {
@@ -7,83 +7,114 @@ const About = () => {
 
   const cards = [
     {
-      icon: <Code size={24} />,
-      title: 'AI/ML Developer',
-      description: 'Building and optimizing machine learning models with expertise in classification, regression, and computer vision.'
+      icon: <Code size={24} aria-hidden="true" />,
+      title: "AI & Machine Learning",
+      description:
+        "Building and optimizing machine learning models for classification, regression, and computer vision applications using Python and modern AI techniques.",
     },
     {
-      icon: <Zap size={24} />,
-      title: 'Data Science Expert',
-      description: 'Proficient in data preprocessing, feature engineering, EDA, and statistical analysis using Python and cloud platforms.'
+      icon: <Zap size={24} aria-hidden="true" />,
+      title: "Data Science",
+      description:
+        "Working with data preprocessing, exploratory data analysis, feature engineering, statistical analysis, and machine learning workflows to turn data into useful insights.",
     },
     {
-      icon: <Heart size={24} />,
-      title: 'Cloud AI Solutions',
-      description: 'Hands-on experience deploying AI solutions on Microsoft Azure and Google Cloud Platform with RESTful APIs.'
-    }
+      icon: <Heart size={24} aria-hidden="true" />,
+      title: "AI & Cloud Solutions",
+      description:
+        "Developing practical AI applications and RESTful APIs with experience across Microsoft Azure and Google Cloud Platform for scalable software solutions.",
+    },
   ];
 
   return (
     <section
       id="about"
-      className={`py-20 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}
+      aria-labelledby="about-title"
+      className={`py-20 ${
+        theme === "dark" ? "bg-gray-900" : "bg-white"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 
-            className={`text-4xl md:text-5xl font-bold mb-4 ${
-              theme === 'dark' 
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400'
-                : 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600'
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section heading */}
+        <div className="mb-16 text-center">
+          <h2
+            id="about-title"
+            className={`mb-4 text-4xl font-bold md:text-5xl ${
+              theme === "dark"
+                ? "bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                : "bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
             }`}
-            style={{ fontFamily: 'Orbitron, monospace' }}
-            data-aos="fade-up"
+            style={{ fontFamily: "Orbitron, monospace" }}
           >
             About Me
           </h2>
-          <p 
-            className={`text-xl max-w-3xl mx-auto ${
-              theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+
+          <p
+            className={`mx-auto max-w-3xl text-xl leading-8 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-600"
             }`}
-            data-aos="fade-up"
-            data-aos-delay="200"
           >
-            B.Tech Artificial Intelligence and Data Science student with practical internship experience
-            in Machine Learning and Computer Vision development. Proficient in ML algorithms, data
-            preprocessing, feature engineering, and building API-driven AI applications. Hands-on experience 
-            deploying AI solutions on cloud platforms. Actively seeking AI/ML roles to work on
-            production-ready, scalable AI systems.
+            I am Jatin Khandal, a B.Tech Artificial Intelligence and Data
+            Science student focused on building practical AI and software
+            solutions. My experience spans{" "}
+            <strong>Python, Machine Learning, Data Science, and Computer Vision</strong>,
+            along with modern web technologies such as{" "}
+            <strong>ReactJS, FastAPI, and MongoDB</strong>.
+          </p>
+
+          <p
+            className={`mx-auto mt-5 max-w-3xl text-base leading-7 ${
+              theme === "dark" ? "text-gray-400" : "text-gray-500"
+            }`}
+          >
+            I enjoy transforming ideas into production-oriented applications,
+            from data preprocessing and model development to RESTful APIs and
+            cloud-based AI solutions. My goal is to create scalable,
+            intelligent systems that solve real-world problems.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Expertise cards */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {cards.map((card, index) => (
-            <div
+            <article
               key={index}
-              className={`about-card group relative overflow-hidden p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-2 ${
-                theme === 'dark'
-                  ? 'bg-gray-800/50 border-gray-700 hover:bg-gray-800/70'
-                  : 'bg-white/50 border-gray-200 hover:bg-white/70'
+              className={`about-card group relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-2 ${
+                theme === "dark"
+                  ? "border-gray-700 bg-gray-800/50 hover:bg-gray-800/70"
+                  : "border-gray-200 bg-white/50 hover:bg-white/70"
               }`}
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
             >
-              <div className={`inline-flex p-3 rounded-lg mb-4 ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white'
-                  : 'bg-gradient-to-r from-purple-500 to-blue-500 text-white'
-              }`}>
+              {/* Icon */}
+              <div
+                className={`mb-4 inline-flex rounded-lg p-3 ${
+                  theme === "dark"
+                    ? "bg-gradient-to-r from-cyan-500 to-purple-500 text-white"
+                    : "bg-gradient-to-r from-purple-500 to-blue-500 text-white"
+                }`}
+                aria-hidden="true"
+              >
                 {card.icon}
               </div>
-              <h3 className={`text-xl font-semibold mb-3 ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}>
+
+              {/* Card heading */}
+              <h3
+                className={`mb-3 text-xl font-semibold ${
+                  theme === "dark" ? "text-white" : "text-gray-900"
+                }`}
+              >
                 {card.title}
               </h3>
-              <p className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}>
+
+              {/* Card description */}
+              <p
+                className={`leading-7 ${
+                  theme === "dark" ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 {card.description}
               </p>
-            </div>
+            </article>
           ))}
         </div>
       </div>
