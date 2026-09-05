@@ -8,6 +8,8 @@ import {
   Linkedin,
   Twitter,
   ArrowUpRight,
+  Sparkles,
+  CheckCircle2,
 } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -30,6 +32,7 @@ const Contact = () => {
   const formRef = useRef(null);
 
   const { theme } = useTheme();
+  const dark = theme === "dark";
 
   // ==========================================
   // CONTACT DATA
@@ -37,21 +40,21 @@ const Contact = () => {
 
   const contactDetails = [
     {
-      icon: <Mail size={21} />,
+      icon: <Mail size={20} aria-hidden="true" />,
       label: "Email",
       value: "khandaljatin2187@gmail.com",
       href: "mailto:khandaljatin2187@gmail.com",
       color: "#EA4335",
     },
     {
-      icon: <Phone size={21} />,
+      icon: <Phone size={20} aria-hidden="true" />,
       label: "Phone",
       value: "+91 9664255659",
       href: "tel:+919664255659",
       color: "#34A853",
     },
     {
-      icon: <MapPin size={21} />,
+      icon: <MapPin size={20} aria-hidden="true" />,
       label: "Location",
       value: "Jaipur, India",
       href: null,
@@ -59,21 +62,23 @@ const Contact = () => {
     },
   ];
 
+  // IMPORTANT:
+  // Existing social links are preserved exactly.
   const socialLinks = [
     {
-      icon: <Github size={21} />,
+      icon: <Github size={20} aria-hidden="true" />,
       href: "https://github.com/jatinkhandal001",
       label: "GitHub",
       color: "#ffffff",
     },
     {
-      icon: <Linkedin size={21} />,
+      icon: <Linkedin size={20} aria-hidden="true" />,
       href: "https://linkedin.com/in/jatinkhandal001",
       label: "LinkedIn",
       color: "#0077B5",
     },
     {
-      icon: <Twitter size={21} />,
+      icon: <Twitter size={20} aria-hidden="true" />,
       href: "https://twitter.com",
       label: "Twitter",
       color: "#1DA1F2",
@@ -81,7 +86,7 @@ const Contact = () => {
   ];
 
   // ==========================================
-  // GSAP ANIMATION
+  // GSAP
   // ==========================================
 
   useEffect(() => {
@@ -94,28 +99,28 @@ const Contact = () => {
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
-      const heading = section.querySelector(".contact-heading");
-      const subtitle = section.querySelector(".contact-subtitle");
-      const info = section.querySelector(".contact-info");
-      const form = section.querySelector(".contact-form");
-      const cards = gsap.utils.toArray(".contact-card");
-      const socials = gsap.utils.toArray(".social-link");
-      const details = gsap.utils.toArray(".contact-detail");
-
-      // ========================================
-      // Reduced Motion
-      // ========================================
+      const elements = {
+        badge: section.querySelector(".contact-badge"),
+        heading: section.querySelector(".contact-heading"),
+        subtitle: section.querySelector(".contact-subtitle"),
+        info: section.querySelector(".contact-info"),
+        cards: gsap.utils.toArray(".contact-card"),
+        socials: gsap.utils.toArray(".social-link"),
+        form: section.querySelector(".contact-form-panel"),
+        fields: gsap.utils.toArray(".contact-field"),
+      };
 
       if (reduceMotion) {
         gsap.set(
           [
-            heading,
-            subtitle,
-            info,
-            form,
-            ...cards,
-            ...socials,
-            ...details,
+            elements.badge,
+            elements.heading,
+            elements.subtitle,
+            elements.info,
+            elements.form,
+            ...elements.cards,
+            ...elements.socials,
+            ...elements.fields,
           ],
           {
             opacity: 1,
@@ -128,31 +133,50 @@ const Contact = () => {
         return;
       }
 
-      // ========================================
-      // Heading
-      // ========================================
-
+      // Header
       gsap.fromTo(
-        heading,
+        [elements.badge, elements.heading, elements.subtitle],
         {
           opacity: 0,
-          y: 35,
+          y: 25,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.65,
+          stagger: 0.08,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: heading,
+            trigger: elements.heading,
             start: "top 85%",
             once: true,
           },
         }
       );
 
+      // Left side
       gsap.fromTo(
-        subtitle,
+        elements.info,
+        {
+          opacity: 0,
+          x: -45,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.75,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: elements.info,
+            start: "top 82%",
+            once: true,
+          },
+        }
+      );
+
+      // Cards
+      gsap.fromTo(
+        elements.cards,
         {
           opacity: 0,
           y: 20,
@@ -160,101 +184,48 @@ const Contact = () => {
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          delay: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: subtitle,
-            start: "top 88%",
-            once: true,
-          },
-        }
-      );
-
-      // ========================================
-      // Left Side
-      // ========================================
-
-      gsap.fromTo(
-        info,
-        {
-          opacity: 0,
-          x: -50,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.75,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: info,
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
-
-      // ========================================
-      // Contact Cards
-      // ========================================
-
-      gsap.fromTo(
-        cards,
-        {
-          opacity: 0,
-          y: 25,
-          scale: 0.96,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.55,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: info,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-
-      // ========================================
-      // Social Icons
-      // ========================================
-
-      gsap.fromTo(
-        socials,
-        {
-          opacity: 0,
-          y: 15,
-          scale: 0.8,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.45,
+          duration: 0.5,
           stagger: 0.08,
-          ease: "back.out(1.7)",
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: socials[0],
-            start: "top 90%",
+            trigger: elements.info,
+            start: "top 78%",
             once: true,
           },
         }
       );
 
-      // ========================================
-      // Form
-      // ========================================
+      // Socials
+      if (elements.socials.length) {
+        gsap.fromTo(
+          elements.socials,
+          {
+            opacity: 0,
+            scale: 0.85,
+            y: 12,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.07,
+            ease: "back.out(1.5)",
+            scrollTrigger: {
+              trigger: elements.socials[0],
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
+      }
 
+      // Form
       gsap.fromTo(
-        form,
+        elements.form,
         {
           opacity: 0,
-          x: 50,
+          x: 45,
         },
         {
           opacity: 1,
@@ -262,41 +233,36 @@ const Contact = () => {
           duration: 0.75,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: form,
+            trigger: elements.form,
             start: "top 82%",
             once: true,
           },
         }
       );
 
-      // ========================================
-      // Form Fields
-      // ========================================
-
+      // Fields
       gsap.fromTo(
-        details,
+        elements.fields,
         {
           opacity: 0,
-          y: 15,
+          y: 12,
         },
         {
           opacity: 1,
           y: 0,
           duration: 0.4,
-          stagger: 0.08,
+          stagger: 0.07,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: form,
-            start: "top 80%",
+            trigger: elements.form,
+            start: "top 78%",
             once: true,
           },
         }
       );
     }, section);
 
-    return () => {
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   // ==========================================
@@ -307,6 +273,7 @@ const Contact = () => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
+      setSubmitStatus("Please complete all fields.");
       return;
     }
 
@@ -321,17 +288,14 @@ const Contact = () => {
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
     );
 
-    // Open email client
+    // Existing mailto functionality preserved.
     window.location.href =
       `mailto:khandaljatin2187@gmail.com?subject=${subject}&body=${body}`;
 
-    // Small success animation
     if (formRef.current) {
       gsap.fromTo(
         formRef.current,
-        {
-          scale: 0.98,
-        },
+        { scale: 0.985 },
         {
           scale: 1,
           duration: 0.35,
@@ -342,6 +306,7 @@ const Contact = () => {
 
     setTimeout(() => {
       setIsSubmitting(false);
+
       setSubmitStatus(
         "Your email app should open with the message ready to send."
       );
@@ -363,35 +328,68 @@ const Contact = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+
+    if (submitStatus) {
+      setSubmitStatus("");
+    }
   };
+
+  // ==========================================
+  // INPUT STYLE
+  // ==========================================
+
+  const inputClass = (field) => `
+    w-full rounded-xl border px-4 py-3.5
+    text-sm sm:text-base
+    outline-none
+    transition-all duration-300
+    ${
+      dark
+        ? "border-gray-700 bg-gray-950/70 text-white placeholder:text-gray-600 focus:border-cyan-400"
+        : "border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-purple-500"
+    }
+  `;
 
   return (
     <section
       id="contact"
       ref={sectionRef}
+      aria-labelledby="contact-title"
       className={`relative overflow-hidden py-20 sm:py-24 ${
-        theme === "dark"
-          ? "bg-gray-900"
-          : "bg-gray-50"
+        dark ? "bg-gray-900" : "bg-gray-50"
       }`}
     >
       {/* ==========================================
           BACKGROUND
       ========================================== */}
 
-      <div className="pointer-events-none absolute inset-0">
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      >
         {/* Main glow */}
-
         <div
-          className={`absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-[110px] ${
-            theme === "dark"
+          className={`absolute left-1/2 top-0 h-[500px] w-[500px]
+          -translate-x-1/2 rounded-full blur-[130px]
+          ${
+            dark
               ? "bg-cyan-500/10"
               : "bg-purple-500/10"
           }`}
         />
 
-        {/* Grid */}
+        {/* Secondary glow */}
+        <div
+          className={`absolute bottom-0 right-0 h-[300px] w-[300px]
+          rounded-full blur-[120px]
+          ${
+            dark
+              ? "bg-purple-500/8"
+              : "bg-blue-500/8"
+          }`}
+        />
 
+        {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
@@ -412,21 +410,42 @@ const Contact = () => {
       </div>
 
       {/* ==========================================
-          CONTAINER
+          MAIN CONTAINER
       ========================================== */}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
         {/* ==========================================
-            HEADING
+            HEADER
         ========================================== */}
 
-        <div className="mb-14 text-center sm:mb-16">
-          <h2
-            className={`contact-heading mb-5 text-4xl font-bold sm:text-5xl md:text-6xl ${
-              theme === "dark"
-                ? "bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-                : "bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent"
+        <header className="mb-14 text-center sm:mb-16">
+
+          <div
+            className={`contact-badge mb-5 inline-flex items-center gap-2
+            rounded-full border px-4 py-2 text-xs font-semibold
+            ${
+              dark
+                ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-400"
+                : "border-purple-500/20 bg-purple-500/10 text-purple-600"
             }`}
+          >
+            <Sparkles
+              size={14}
+              aria-hidden="true"
+            />
+
+            <span>LET'S CONNECT</span>
+          </div>
+
+          <h2
+            id="contact-title"
+            className={`contact-heading text-4xl font-bold tracking-tight
+            sm:text-5xl md:text-6xl ${
+              dark
+                ? "bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400"
+                : "bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600"
+            } bg-clip-text text-transparent`}
             style={{
               fontFamily: "Orbitron, monospace",
             }}
@@ -435,96 +454,131 @@ const Contact = () => {
           </h2>
 
           <p
-            className={`contact-subtitle mx-auto max-w-3xl text-base sm:text-lg md:text-xl ${
-              theme === "dark"
-                ? "text-gray-300"
-                : "text-gray-600"
+            className={`contact-subtitle mx-auto mt-5 max-w-2xl
+            text-base leading-relaxed sm:text-lg ${
+              dark ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            Let's build something extraordinary together
+            Have an idea, project, collaboration, or opportunity?
+            Let's turn it into something meaningful with technology.
           </p>
-        </div>
+        </header>
 
         {/* ==========================================
             CONTENT
         ========================================== */}
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+
           {/* ========================================
-              CONTACT INFO
+              LEFT — CONTACT INFO
           ======================================== */}
 
           <div className="contact-info">
-            <div className="mb-8">
-              <span
-                className={`mb-2 block text-sm font-medium uppercase tracking-[0.2em] ${
-                  theme === "dark"
-                    ? "text-cyan-400"
-                    : "text-purple-600"
+
+            <div
+              className={`mb-6 rounded-2xl border p-6 sm:p-7 ${
+                dark
+                  ? "border-gray-800 bg-gray-950/50"
+                  : "border-gray-200 bg-white"
+              }`}
+            >
+              {/* Status */}
+
+              <div
+                className={`mb-6 inline-flex items-center gap-2 rounded-full
+                border px-3 py-1.5 text-xs font-medium ${
+                  dark
+                    ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                    : "border-emerald-500/20 bg-emerald-500/10 text-emerald-600"
                 }`}
               >
-                Contact
-              </span>
+                <span className="relative flex h-2 w-2">
+                  <span
+                    className="absolute inline-flex h-full w-full
+                    animate-ping rounded-full bg-emerald-400 opacity-75"
+                  />
+                  <span
+                    className="relative inline-flex h-2 w-2
+                    rounded-full bg-emerald-500"
+                  />
+                </span>
+
+                Available for opportunities
+              </div>
 
               <h3
-                className={`text-3xl font-bold sm:text-4xl ${
-                  theme === "dark"
-                    ? "text-white"
-                    : "text-gray-900"
+                className={`text-2xl font-bold sm:text-3xl ${
+                  dark ? "text-white" : "text-gray-900"
                 }`}
               >
-                Get In Touch
+                Let's Work Together
               </h3>
+
+              <p
+                className={`mt-3 text-sm leading-relaxed ${
+                  dark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                I'm interested in AI, Machine Learning, Data Science,
+                Computer Vision, and modern software development.
+                If you have an interesting idea or opportunity,
+                feel free to reach out.
+              </p>
             </div>
 
-            {/* Contact Cards */}
+            {/* Contact cards */}
 
-            <div className="space-y-4">
+            <address className="space-y-3 not-italic">
               {contactDetails.map((contact) => {
                 const content = (
                   <>
-                    {/* Icon */}
-
                     <div
-                      className="contact-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white transition-transform duration-300 group-hover:scale-110"
+                      className="flex h-11 w-11 shrink-0 items-center
+                      justify-center rounded-xl text-white
+                      transition-transform duration-300
+                      group-hover:scale-110"
                       style={{
                         backgroundColor: contact.color,
                       }}
+                      aria-hidden="true"
                     >
                       {contact.icon}
                     </div>
 
-                    {/* Text */}
-
                     <div className="min-w-0 flex-1">
                       <p
-                        className={`mb-1 text-sm font-semibold ${
-                          theme === "dark"
-                            ? "text-white"
-                            : "text-gray-900"
+                        className={`text-xs font-medium uppercase
+                        tracking-wider ${
+                          dark
+                            ? "text-gray-500"
+                            : "text-gray-400"
                         }`}
                       >
                         {contact.label}
                       </p>
 
                       <p
-                        className={`break-all text-sm sm:text-base ${
-                          theme === "dark"
-                            ? "text-gray-400"
-                            : "text-gray-600"
+                        className={`mt-1 break-all text-sm font-medium ${
+                          dark
+                            ? "text-gray-200"
+                            : "text-gray-800"
                         }`}
                       >
                         {contact.value}
                       </p>
                     </div>
 
-                    {/* Arrow */}
-
                     {contact.href && (
                       <ArrowUpRight
                         size={18}
-                        className={`shrink-0 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100 ${
-                          theme === "dark"
+                        aria-hidden="true"
+                        className={`shrink-0 opacity-0
+                        transition-all duration-300
+                        group-hover:translate-x-1
+                        group-hover:-translate-y-1
+                        group-hover:opacity-100 ${
+                          dark
                             ? "text-cyan-400"
                             : "text-purple-600"
                         }`}
@@ -538,10 +592,15 @@ const Contact = () => {
                     <a
                       key={contact.label}
                       href={contact.href}
-                      className={`contact-card group flex items-center gap-4 rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-1 ${
-                        theme === "dark"
-                          ? "border-gray-700 bg-gray-800 hover:border-cyan-500/50"
-                          : "border-gray-200 bg-white hover:border-purple-400/50"
+                      aria-label={`${contact.label}: ${contact.value}`}
+                      className={`contact-card group flex items-center
+                      gap-4 rounded-2xl border p-4
+                      transition-all duration-300
+                      hover:-translate-y-1
+                      focus:outline-none focus:ring-2 ${
+                        dark
+                          ? "border-gray-800 bg-gray-950/60 hover:border-cyan-500/40 focus:ring-cyan-400/30"
+                          : "border-gray-200 bg-white hover:border-purple-400/50 focus:ring-purple-500/30"
                       }`}
                     >
                       {content}
@@ -552,45 +611,49 @@ const Contact = () => {
                 return (
                   <div
                     key={contact.label}
-                    className={`contact-card group flex items-center gap-4 rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-1 ${
-                      theme === "dark"
-                        ? "border-gray-700 bg-gray-800 hover:border-cyan-500/50"
-                        : "border-gray-200 bg-white hover:border-purple-400/50"
+                    className={`contact-card group flex items-center
+                    gap-4 rounded-2xl border p-4 ${
+                      dark
+                        ? "border-gray-800 bg-gray-950/60"
+                        : "border-gray-200 bg-white"
                     }`}
                   >
                     {content}
                   </div>
                 );
               })}
-            </div>
+            </address>
 
-            {/* ========================================
-                SOCIALS
-            ======================================== */}
+            {/* Social */}
 
-            <div className="mt-10">
+            <div className="mt-7">
               <h4
-                className={`mb-5 text-lg font-semibold ${
-                  theme === "dark"
-                    ? "text-white"
-                    : "text-gray-900"
+                className={`mb-4 text-sm font-semibold ${
+                  dark ? "text-gray-200" : "text-gray-800"
                 }`}
               >
-                Follow My Journey
+                Find me online
               </h4>
 
-              <div className="flex gap-3">
+              <nav
+                aria-label="Social media profiles"
+                className="flex gap-3"
+              >
                 {socialLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={link.label}
-                    className={`social-link group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-1 hover:scale-105 ${
-                      theme === "dark"
-                        ? "border-gray-700 bg-gray-800 text-gray-400"
-                        : "border-gray-200 bg-white text-gray-600"
+                    aria-label={`Visit my ${link.label} profile`}
+                    className={`social-link group relative flex h-11
+                    w-11 items-center justify-center overflow-hidden
+                    rounded-xl border transition-all duration-300
+                    hover:-translate-y-1 hover:scale-105
+                    focus:outline-none focus:ring-2 ${
+                      dark
+                        ? "border-gray-800 bg-gray-950 text-gray-400 focus:ring-cyan-400/30"
+                        : "border-gray-200 bg-white text-gray-600 focus:ring-purple-500/30"
                     }`}
                   >
                     <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
@@ -598,43 +661,86 @@ const Contact = () => {
                     </span>
 
                     <span
-                      className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      className="absolute inset-0 opacity-0
+                      transition-opacity duration-300
+                      group-hover:opacity-100"
                       style={{
                         backgroundColor: link.color,
                       }}
+                      aria-hidden="true"
                     />
                   </a>
                 ))}
-              </div>
+              </nav>
             </div>
           </div>
 
           {/* ========================================
-              FORM
+              RIGHT — FORM
           ======================================== */}
 
-          <div>
+          <div
+            ref={formRef}
+            className={`contact-form-panel rounded-3xl border p-6
+            shadow-2xl sm:p-8 ${
+              dark
+                ? "border-gray-800 bg-gray-950/80 shadow-black/20"
+                : "border-gray-200 bg-white shadow-gray-200/50"
+            }`}
+          >
+            {/* Form heading */}
+
+            <div className="mb-7">
+              <div
+                className={`mb-3 flex h-10 w-10 items-center
+                justify-center rounded-xl ${
+                  dark
+                    ? "bg-cyan-500/10 text-cyan-400"
+                    : "bg-purple-500/10 text-purple-600"
+                }`}
+              >
+                <Mail
+                  size={19}
+                  aria-hidden="true"
+                />
+              </div>
+
+              <h3
+                className={`text-2xl font-bold ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Send a Message
+              </h3>
+
+              <p
+                className={`mt-2 text-sm ${
+                  dark ? "text-gray-500" : "text-gray-500"
+                }`}
+              >
+                Tell me what you're working on and I'll get back to you.
+              </p>
+            </div>
+
             <form
-              ref={formRef}
               onSubmit={handleSubmit}
-              className="contact-form space-y-5"
+              aria-label="Contact form"
+              className="space-y-5"
             >
               {/* Name */}
 
-              <div className="contact-detail">
+              <div className="contact-field">
                 <label
-                  htmlFor="name"
+                  htmlFor="contact-name"
                   className={`mb-2 block text-sm font-medium ${
-                    theme === "dark"
-                      ? "text-gray-300"
-                      : "text-gray-700"
+                    dark ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
                   Your Name
                 </label>
 
                 <input
-                  id="name"
+                  id="contact-name"
                   name="name"
                   type="text"
                   value={formData.name}
@@ -642,16 +748,14 @@ const Contact = () => {
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="Enter your name"
+                  autoComplete="name"
                   required
-                  className={`w-full rounded-xl border px-5 py-4 text-sm outline-none transition-all duration-300 sm:text-base ${
-                    theme === "dark"
-                      ? "border-gray-700 bg-gray-800 text-white placeholder:text-gray-600 focus:border-cyan-400"
-                      : "border-gray-200 bg-white text-gray-900 placeholder:text-gray-400 focus:border-purple-500"
-                  }`}
+                  aria-required="true"
+                  className={inputClass("name")}
                   style={{
                     boxShadow:
                       focusedField === "name"
-                        ? theme === "dark"
+                        ? dark
                           ? "0 0 0 3px rgba(6,182,212,0.10)"
                           : "0 0 0 3px rgba(139,92,246,0.10)"
                         : "none",
@@ -661,20 +765,18 @@ const Contact = () => {
 
               {/* Email */}
 
-              <div className="contact-detail">
+              <div className="contact-field">
                 <label
-                  htmlFor="email"
+                  htmlFor="contact-email"
                   className={`mb-2 block text-sm font-medium ${
-                    theme === "dark"
-                      ? "text-gray-300"
-                      : "text-gray-700"
+                    dark ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
                   Email Address
                 </label>
 
                 <input
-                  id="email"
+                  id="contact-email"
                   name="email"
                   type="email"
                   value={formData.email}
@@ -682,16 +784,14 @@ const Contact = () => {
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="you@example.com"
+                  autoComplete="email"
                   required
-                  className={`w-full rounded-xl border px-5 py-4 text-sm outline-none transition-all duration-300 sm:text-base ${
-                    theme === "dark"
-                      ? "border-gray-700 bg-gray-800 text-white placeholder:text-gray-600 focus:border-cyan-400"
-                      : "border-gray-200 bg-white text-gray-900 placeholder:text-gray-400 focus:border-purple-500"
-                  }`}
+                  aria-required="true"
+                  className={inputClass("email")}
                   style={{
                     boxShadow:
                       focusedField === "email"
-                        ? theme === "dark"
+                        ? dark
                           ? "0 0 0 3px rgba(6,182,212,0.10)"
                           : "0 0 0 3px rgba(139,92,246,0.10)"
                         : "none",
@@ -701,37 +801,32 @@ const Contact = () => {
 
               {/* Message */}
 
-              <div className="contact-detail">
+              <div className="contact-field">
                 <label
-                  htmlFor="message"
+                  htmlFor="contact-message"
                   className={`mb-2 block text-sm font-medium ${
-                    theme === "dark"
-                      ? "text-gray-300"
-                      : "text-gray-700"
+                    dark ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
                   Your Message
                 </label>
 
                 <textarea
-                  id="message"
+                  id="contact-message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField(null)}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about your project, idea, or opportunity..."
                   rows={6}
                   required
-                  className={`w-full resize-none rounded-xl border px-5 py-4 text-sm outline-none transition-all duration-300 sm:text-base ${
-                    theme === "dark"
-                      ? "border-gray-700 bg-gray-800 text-white placeholder:text-gray-600 focus:border-cyan-400"
-                      : "border-gray-200 bg-white text-gray-900 placeholder:text-gray-400 focus:border-purple-500"
-                  }`}
+                  aria-required="true"
+                  className={`${inputClass("message")} resize-none`}
                   style={{
                     boxShadow:
                       focusedField === "message"
-                        ? theme === "dark"
+                        ? dark
                           ? "0 0 0 3px rgba(6,182,212,0.10)"
                           : "0 0 0 3px rgba(139,92,246,0.10)"
                         : "none",
@@ -741,49 +836,80 @@ const Contact = () => {
 
               {/* Submit */}
 
-              <div className="contact-detail pt-2">
+              <div className="contact-field pt-1">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl px-6 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60 ${
-                    theme === "dark"
-                      ? "bg-gradient-to-r from-cyan-500 to-purple-500 hover:shadow-cyan-500/20"
-                      : "bg-gradient-to-r from-purple-500 to-blue-500 hover:shadow-purple-500/20"
+                  aria-busy={isSubmitting}
+                  className={`group relative flex w-full
+                  items-center justify-center gap-3 overflow-hidden
+                  rounded-xl px-6 py-4 font-semibold text-white
+                  transition-all duration-300
+                  hover:-translate-y-1 hover:shadow-xl
+                  focus:outline-none focus:ring-2
+                  disabled:cursor-not-allowed disabled:opacity-60 ${
+                    dark
+                      ? "bg-gradient-to-r from-cyan-500 to-purple-500 hover:shadow-cyan-500/20 focus:ring-cyan-400/30"
+                      : "bg-gradient-to-r from-purple-500 to-blue-500 hover:shadow-purple-500/20 focus:ring-purple-500/30"
                   }`}
                 >
                   <span className="relative z-10 flex items-center gap-3">
                     {isSubmitting ? (
                       <>
-                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        <span
+                          className="h-5 w-5 animate-spin rounded-full
+                          border-2 border-white border-t-transparent"
+                          aria-hidden="true"
+                        />
+
                         Sending...
                       </>
                     ) : (
                       <>
-                        <Send size={19} />
+                        <Send
+                          size={18}
+                          aria-hidden="true"
+                        />
+
                         Launch Message
                       </>
                     )}
                   </span>
 
-                  {/* Hover shine */}
-
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                  <span
+                    className="absolute inset-0 -translate-x-full
+                    bg-gradient-to-r from-transparent via-white/15
+                    to-transparent transition-transform duration-700
+                    group-hover:translate-x-full"
+                    aria-hidden="true"
+                  />
                 </button>
               </div>
 
               {/* Status */}
 
               {submitStatus && (
-                <p
-                  className={`text-center text-sm ${
-                    theme === "dark"
-                      ? "text-cyan-400"
-                      : "text-purple-600"
+                <div
+                  className={`flex items-center justify-center gap-2
+                  rounded-xl border px-4 py-3 text-sm ${
+                    submitStatus.includes("complete")
+                      ? dark
+                        ? "border-yellow-500/20 bg-yellow-500/10 text-yellow-400"
+                        : "border-yellow-500/20 bg-yellow-500/10 text-yellow-700"
+                      : dark
+                        ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-400"
+                        : "border-purple-500/20 bg-purple-500/10 text-purple-600"
                   }`}
                   aria-live="polite"
+                  role="status"
                 >
+                  <CheckCircle2
+                    size={16}
+                    aria-hidden="true"
+                  />
+
                   {submitStatus}
-                </p>
+                </div>
               )}
             </form>
           </div>
