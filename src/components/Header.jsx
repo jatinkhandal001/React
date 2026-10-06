@@ -139,7 +139,7 @@ const Header = () => {
             {/* Resume - Desktop */}
 
             <a
-              href="https://docs.google.com/document/d/1NtpXVOfE7WgeqBKKcmO5kbBm_vb6Z_Nr/edit?usp=drivesdk&ouid=102820377739370740071&rtpof=true&sd=true"
+              href="https://drive.google.com/file/d/1iFAUR1sU5U2mnQ009lDYLyWQ-q36Zwx9/view"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/20 sm:flex"
